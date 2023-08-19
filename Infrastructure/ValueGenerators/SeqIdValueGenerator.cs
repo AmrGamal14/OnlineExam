@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.ValueGenerators
 {
-    public class SeqIdValueGenerator : ValueGenerator<string>
+    public class SeqIdValueGenerator : ValueGenerator<Guid>
     {
         public override bool GeneratesTemporaryValues => false;
 
-        public override string Next(EntityEntry entry)
+        public override Guid Next(EntityEntry entry)
         {
-            return NUlid.Ulid.NewUlid().ToString().ToLower();
+            //return NUlid.Ulid.NewUlid().ToString().ToLower();
+            return Guid.NewGuid();
         }
     }
 }

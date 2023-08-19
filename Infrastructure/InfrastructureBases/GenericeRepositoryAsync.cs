@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Context;
+using Infrastructure.Interfaces;
+using Data.Audit.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.InfrastructureBases
 {
@@ -36,6 +39,11 @@ namespace Infrastructure.InfrastructureBases
 
             return await _dbContext.Set<T>().FindAsync(id);
         }
+        public virtual async Task<List<T>> GetAll()
+        {
+
+            return await _dbContext.Set<T>().ToListAsync();
+        }
 
 
         public IQueryable<T> GetTableNoTracking()
@@ -53,6 +61,13 @@ namespace Infrastructure.InfrastructureBases
         public virtual async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return entity;
+        }
+        public virtual async Task<List<T>> AddListAsync(List<T> entity)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(entity);
             await _dbContext.SaveChangesAsync();
 
             return entity;
@@ -117,6 +132,7 @@ namespace Infrastructure.InfrastructureBases
 
         }
 
+       
 
         #endregion
     }

@@ -4,6 +4,7 @@ using Data.Entities.Helper;
 using Data.Entities.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Rewrite;
 using Service.Abstracts;
 using System;
 using System.Collections.Generic;

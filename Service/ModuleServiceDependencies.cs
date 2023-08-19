@@ -13,9 +13,18 @@ namespace Service
         {
             services
             .AddTransient<IAuthenticationService, AuthenticationService>()
-            .AddTransient<IAuthorizationService, AuthorizationService>();
+            .AddTransient<IAuthorizationService, AuthorizationService>()
+            .AddTransient<ISubjectService, SubjectService>()
+            .AddTransient<ILevelService, LevelService>()
+            .AddTransient<ISubjectLevelService, SubjectLevelService>()
+            .AddTransient<ISkillService, SkillService>()
+            .AddTransient<IQuestionService, QuestionService>()
+            .AddTransient<IExamService, ExamService>()
+            .AddTransient<IStudentExamSrevice, StudentExamSrevice>()
+            .AddTransient<IExamQuestionService, ExamQuestionService>()
+            .AddTransient<IAnswerService, AnswerService>();
             return services;
         }
 
     }
-}
+} 

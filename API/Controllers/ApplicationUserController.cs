@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Core.Features.UserCQRS.Command.Models;
 using Core.Features.UserCQRS.Query.Models;
+using Core.Resources;
+using Microsoft.Extensions.Localization;
 
 namespace API.Controllers
 {
@@ -10,11 +12,13 @@ namespace API.Controllers
     [ApiController]
     public class ApplicationUserController : ControllerBase
     {
+        private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         private readonly IMediator _mediator;
 
-        public ApplicationUserController(IMediator mediator)
+        public ApplicationUserController(IMediator mediator, IStringLocalizer<SharedResources> stringLocalizer)
         {
             _mediator=mediator;
+            _stringLocalizer=stringLocalizer;
         }
         [HttpGet("/ShowAllUser")]
         public async Task<IActionResult> Paginated([FromQuery] GetUserListQuery query)

@@ -45,13 +45,13 @@ namespace Core.MiddleWare
 
                     case ValidationException e:
                         // custom validation error
-                        responseModel.Message = "error";
+                        responseModel.Message = error.Message; 
                         responseModel.StatusCode = HttpStatusCode.UnprocessableEntity;
                         response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
                         break;
                     case KeyNotFoundException e:
                         // not found error
-                        responseModel.Message = error.Message; ;
+                        responseModel.Message = error.Message; 
                         responseModel.StatusCode = HttpStatusCode.NotFound;
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;

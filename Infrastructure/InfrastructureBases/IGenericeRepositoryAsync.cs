@@ -18,10 +18,12 @@ namespace Infrastructure.InfrastructureBases
         IQueryable<T> GetTableNoTracking();
         IQueryable<T> GetTableAsTracking();
         Task<T> AddAsync(T entity);
+        Task<List<T>> AddListAsync(List<T> entity);
         Task AddRangeAsync(ICollection<T> entity);
         Task UpdateAsync(T entity);
         Task UpdateRangeAsync(ICollection<T> entity);
         Task DeleteAsync(T entity);
+        Task<List<T>> GetAll();
 
     }
 }

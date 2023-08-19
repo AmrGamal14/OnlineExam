@@ -10,6 +10,8 @@ using Core.Bases;
 using Core.Features.UserCQRS.Command.Models;
 using Data.Entities.Identity;
 using Data.Enums;
+using Core.Resources;
+using Microsoft.Extensions.Localization;
 
 namespace Core.Features.UserCQRS.Command.Handlers
 {
@@ -22,13 +24,15 @@ namespace Core.Features.UserCQRS.Command.Handlers
 
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
+        private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         #endregion
 
         #region Constructors 
-        public UserCommandHandler(IMapper mapper, UserManager<User> userManager)
+        public UserCommandHandler(IMapper mapper, UserManager<User> userManager, IStringLocalizer<SharedResources> stringLocalizer)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _stringLocalizer = stringLocalizer;
 
         }
         #endregion
@@ -39,17 +43,17 @@ namespace Core.Features.UserCQRS.Command.Handlers
             //if Email is Exist
             var useremail = await _userManager.FindByEmailAsync(request.Email);
             //Email is Exist 
-            if (useremail != null) return BadRequest<string>("email is exist ");
+            if (useremail != null) return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.EmailExist]);
             //if UserName is Exist 
             var username = await _userManager.FindByNameAsync(request.UserName);
             //UserName is Exist 
-            if (username != null) return BadRequest<string>("username is already exist ");
+            if (username != null) return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.UserExist]);
             //Mapping 
             var identityuser = _mapper.Map<User>(request);
             //Create
             var createruslt = await _userManager.CreateAsync(identityuser,request.Password); 
             //Field 
-            if (!createruslt.Succeeded) return BadRequest<string>("Field to AddUser ");
+            if (!createruslt.Succeeded) return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.AddUser]);
             if (request.Role == RoleEnum.Teacher)
             {
                 await _userManager.AddToRoleAsync(identityuser, "Teacher");

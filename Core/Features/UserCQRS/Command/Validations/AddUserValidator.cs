@@ -5,19 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Features.UserCQRS.Command.Models;
+using Core.Resources;
+using Microsoft.Extensions.Localization;
 
 namespace Core.Features.UserCQRS.Command.Validations
 {
     public class AddUserValidator : AbstractValidator<AddUserCommand>
     {
         #region Fields
+        private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         #endregion
 
         #region constructors
-        public AddUserValidator()
+        public AddUserValidator(IStringLocalizer<SharedResources> stringLocalizer)
         {
+            _stringLocalizer = stringLocalizer;
             ApplyValidationsRules();
             ApplyCustomValidationsRules();
+            
         }
         #endregion
 
@@ -25,17 +30,16 @@ namespace Core.Features.UserCQRS.Command.Validations
         public void ApplyValidationsRules()
         {
             RuleFor(x => x.FullName)
-                .NotEmpty().WithMessage("FullName Must not Be Empty");
-
+              .NotEmpty().WithMessage(_stringLocalizer[SharedResourcesKeys.FullName]);
             RuleFor(x => x.UserName)
-                .NotNull().WithMessage("UserName Must not Be Null");
+                .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.UserName]);
             RuleFor(x => x.Email)
-               .NotNull().WithMessage("Email Must not Be Null");
+               .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Email]);
             RuleFor(x => x.Password)
-               .NotNull().WithMessage("Password Must not Be Null");
+               .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.Password]);
             RuleFor(x => x.ConfirmPassword)
-               .NotNull().WithMessage("ConfirmPassword Must not Be Null")
-               .Equal(x=>x.Password).WithMessage("Password Not Equal ConfirmPassword");
+               .NotNull().WithMessage(_stringLocalizer[SharedResourcesKeys.ConfirmPassword])
+               .Equal(x=>x.Password).WithMessage(_stringLocalizer[SharedResourcesKeys.ConfirmPasswordEnter]);
 
         }
         public void ApplyCustomValidationsRules()

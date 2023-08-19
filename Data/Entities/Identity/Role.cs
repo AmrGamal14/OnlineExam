@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data.Entities.Identity
 {
-    public class Role : IdentityRole<int>
+    public class Role : IdentityRole<Guid>
     {
     }
 }

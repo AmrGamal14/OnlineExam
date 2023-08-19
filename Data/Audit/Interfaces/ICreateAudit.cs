@@ -8,7 +8,7 @@ namespace Data.Audit.Interfaces
 {
     public interface ICreateAudit
     {
-        DateTime CreatedDate { get; set; }
-        string CreatedBy { get; set; }
+        DateTime? CreatedDate { get; set; }
+        string? CreatedBy { get; set; }
     }
 }

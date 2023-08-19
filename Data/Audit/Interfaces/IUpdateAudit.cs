@@ -9,6 +9,6 @@ namespace Data.Audit.Interfaces
     public interface IUpdateAudit
     {
         DateTime? UpdatedDate { get; set; }
-        string UpdatedBy { get; set; }
+        string? UpdatedBy { get; set; }
     }
 }

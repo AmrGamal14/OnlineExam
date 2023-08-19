@@ -78,6 +78,7 @@ namespace Service.Implementations
                 new Claim (nameof(UserClaimModel.Email),user.Email),
                 new Claim (nameof(UserClaimModel.PhoneNumber),user.PhoneNumber),
                 new Claim (nameof(UserClaimModel.Id),user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             };
             var jwtToken = new JwtSecurityToken(_jwtSettings.Issuer,
                                              _jwtSettings.Audience,
@@ -110,7 +111,7 @@ namespace Service.Implementations
             }
             var userId = jwtToken.Claims.FirstOrDefault(x => x.Type==nameof(UserClaimModel.Id)).Value;
 
-            var userRefreshToken = _refreshTokenRepository.GetTableNoTracking().FirstOrDefault(x => x.Token==accessToken && x.RefreshToken==refreshToken&&x.UserId==int.Parse(userId));
+            var userRefreshToken = _refreshTokenRepository.GetTableNoTracking().FirstOrDefault(x => x.Token==accessToken && x.RefreshToken==refreshToken&&x.UserId.ToString() == userId);
 
             if (userRefreshToken==null)
             {
