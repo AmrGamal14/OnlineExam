@@ -19,39 +19,39 @@ namespace Core.Features.Answer.Command.Handlers
                                                          , IRequestHandler<AddAnswerCommand, Response<string>>
 
     {
-        private readonly IAnswerService _answerService;
+        private readonly IUnitOfWorkService _unitOfWorkService;
         private readonly IMapper _mapper;
-        public AnswerCommandHandler(IAnswerService answerService,IMapper mapper)
+        public AnswerCommandHandler(IUnitOfWorkService unitOfWorkService, IMapper mapper)
         {
-            _answerService=answerService;
+            _unitOfWorkService = unitOfWorkService;
             _mapper=mapper;
 
         }
 
         public async Task<Response<string>> Handle(EditAnswerCommand request, CancellationToken cancellationToken)
         {
-            var OldAnswer = await _answerService.GetAnswerByIdasync(request.Id);
+            var OldAnswer = await _unitOfWorkService.answerService.GetAnswerByIdasync(request.Id);
             if (OldAnswer == null)
                 return NotFound<string>("NotFouund");
             var Answermapper = _mapper.Map<Answers>(request);
-            var result = await _answerService.EditAsync(Answermapper);
+            var result = await _unitOfWorkService.answerService.EditAsync(Answermapper);
             if (result=="Success") return success("Edit Successfully");
             else return BadRequest<string>();
         }
 
         public async Task<Response<string>> Handle(DeleteAnswerCommand request, CancellationToken cancellationToken)
         {
-            var answer = await _answerService.GetAnswerByIdasync(request.Id);
+            var answer = await _unitOfWorkService.answerService.GetAnswerByIdasync(request.Id);
             if (answer==null)
                 return NotFound<string>("Notfouund");
-            var result = await _answerService.DeleteAsync(answer);
+            var result = await _unitOfWorkService.answerService.DeleteAsync(answer);
             return success("");
         }
 
         public async Task<Response<string>> Handle(AddAnswerCommand request, CancellationToken cancellationToken)
         {
             var AnswerMapper = _mapper.Map<Answers>(request);
-            var result = await _answerService.AddAsync(AnswerMapper);
+            var result = await _unitOfWorkService.answerService.AddAsync(AnswerMapper);
             return success("k");
 
         }

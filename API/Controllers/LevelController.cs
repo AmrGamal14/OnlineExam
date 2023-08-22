@@ -37,7 +37,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("/Deletelevel")]
-        public async Task<IActionResult> Delete([FromBody] Guid id)
+        public async Task<IActionResult> Delete([FromQuery] Guid id)
         {
             var response = await _mediator.Send(new DeleteLevelCommand(id));
             return Ok(response);

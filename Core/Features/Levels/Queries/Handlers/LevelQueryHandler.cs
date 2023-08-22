@@ -16,19 +16,19 @@ using System.Threading.Tasks;
 
 namespace Core.Features.Levels.Queries.Handlers
 {
-    public class LevelQueryHandler : ResponseHandler, IRequestHandler<GetLevelListBySubjectIdQuery, Response<List<GetLevelListResponse>>>
+    public  class LevelQueryHandler : ResponseHandler, IRequestHandler<GetLevelListBySubjectIdQuery, Response<List<GetLevelListResponse>>>
     {
         #region Fields
-        private readonly ILevelService _levelService;
+        private readonly IUnitOfWorkService _unitOfWorkService;
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         #endregion
         #region Constructors
-        public LevelQueryHandler(ILevelService levelService,
+        public LevelQueryHandler(IUnitOfWorkService unitOfWorkService,
                                     IMapper mapper,
                                      IStringLocalizer<SharedResources> stringLocalizer)
         {
-            _levelService=levelService;
+            _unitOfWorkService = unitOfWorkService;
             _mapper=mapper;
             _stringLocalizer=stringLocalizer;
         }
@@ -36,7 +36,7 @@ namespace Core.Features.Levels.Queries.Handlers
 
         public async Task<Response<List<GetLevelListResponse>>> Handle(GetLevelListBySubjectIdQuery request, CancellationToken cancellationToken)
         {
-            var levellist= await _levelService.GetLevelListBySubjectId(request.SubjectId);
+            var levellist= await _unitOfWorkService.levelService.GetLevelListBySubjectId(request.SubjectId);
             var levellistMapper = _mapper.Map<List<GetLevelListResponse>>(levellist);
             return success(levellistMapper);
         }

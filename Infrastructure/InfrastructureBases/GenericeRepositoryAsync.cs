@@ -61,14 +61,14 @@ namespace Infrastructure.InfrastructureBases
         public virtual async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
 
             return entity;
         }
         public virtual async Task<List<T>> AddListAsync(List<T> entity)
         {
             await _dbContext.Set<T>().AddRangeAsync(entity);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
 
             return entity;
         }
@@ -76,14 +76,14 @@ namespace Infrastructure.InfrastructureBases
         public virtual async Task UpdateAsync(T entity)
         {
             _dbContext.Set<T>().Update(entity);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
 
         }
 
         public virtual async Task DeleteAsync(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
         }
         public virtual async Task DeleteRangeAsync(ICollection<T> entities)
         {

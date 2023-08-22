@@ -11,15 +11,16 @@ namespace Service.Implementations
 {
     public class ExamQuestionService : IExamQuestionService
     {
-        public readonly IExamQuestionRepository _examQuestionRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ExamQuestionService(IExamQuestionRepository examQuestionRepository)
+        public ExamQuestionService(IUnitOfWork unitOfWork)
         {
-            _examQuestionRepository = examQuestionRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<string> AddListAsync(List<ExamQuestion> examQuestion)
         {
-            var result = await _examQuestionRepository.AddListAsync(examQuestion);
+            var result = await _unitOfWork.examQuestion.AddListAsync(examQuestion);
+            _unitOfWork.Complete();
             return "Success";
         }
     

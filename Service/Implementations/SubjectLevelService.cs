@@ -13,16 +13,23 @@ namespace Service.Implementations
 {
     public class SubjectLevelService : ISubjectLevelService
     {
-        public readonly ISubjectLevelRepository _subjectLevelRepository;
+        public readonly IUnitOfWork _unitOfWork;
 
-        public SubjectLevelService(ISubjectLevelRepository subjectLevelRepository)
+        public SubjectLevelService(IUnitOfWork unitOfWork)
         {
-            _subjectLevelRepository=subjectLevelRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<string> AddAsync(SubjectLevel subjectLevel)
         {
-            await _subjectLevelRepository.AddAsync(subjectLevel);
+            await _unitOfWork.subjectLevel.AddAsync(subjectLevel);
+            _unitOfWork.Complete();
             return "Success";
+        }
+        public async Task<SubjectLevel> GetSubjectLevelByLevelIdasync(Guid id)
+        {
+            var subjectLevel =await  _unitOfWork.subjectLevel.GetSubjectLevelByLevelIdAscync(id);
+            return subjectLevel;
+
         }
     }
 }

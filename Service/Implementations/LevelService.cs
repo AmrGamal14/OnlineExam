@@ -12,50 +12,53 @@ using System.Threading.Tasks;
 namespace Service.Implementations
 {
     public class LevelService : ILevelService 
-    {
-        private readonly ILevelRepository _levelRepository;   
+    {  
+        private readonly IUnitOfWork _unitOfWork;   
 
-        public LevelService(ILevelRepository levelRepository)
+        public LevelService( IUnitOfWork unitOfWork)
         {
-            _levelRepository=levelRepository;
+            _unitOfWork=unitOfWork;
         }
 
         public async Task<Level> AddAsync(Level level)
         {
-            var result = await _levelRepository.AddAsync(level);
+            var result = await _unitOfWork.level.AddAsync(level);
+            _unitOfWork.Complete();
             return result;
         }
 
         public async Task<string> DeleteAsync(Level level)
         {
-            await _levelRepository.DeleteAsync(level);
+            await _unitOfWork.level.DeleteAsync(level);
+            _unitOfWork.Complete();
             return "Success";
 
         }
 
         public async Task<string> EditAsync(Level level)
         {
-            await _levelRepository.UpdateAsync(level);
+            await _unitOfWork.level.UpdateAsync(level);
+            _unitOfWork.Complete();
             return "Success";
         }
 
         public async Task<Level> GetLevelByIdasync(Guid id)
         {
-            var level =  _levelRepository.GetTableNoTracking().Where(x => x.Id==id).FirstOrDefault();
+            var level = _unitOfWork.level.GetTableNoTracking().Where(x => x.Id==id).FirstOrDefault();
             return level ;
            
         }
 
         public async Task <List<Level>> GetLevelListBySubjectId(Guid id)
         {
-            var Level =await _levelRepository.GetLevelListBySubjectId(id);
+            var Level =await _unitOfWork.level.GetLevelListBySubjectId(id);
             return Level;
 
         }
 
         public async Task<List<Level>> GetLevelsListAsync()
         {
-            return await _levelRepository.GetLevelListAscync();
+            return await _unitOfWork.level.GetLevelListAscync();
         }
     }
 }

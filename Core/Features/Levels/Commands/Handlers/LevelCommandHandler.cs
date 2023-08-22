@@ -3,7 +3,7 @@ using Core.Bases;
 using Core.Features.Levels.Commands.Models;
 using Core.Features.Subjects.Commands.Models;
 using Data.Entities.Models;
-using Data.Utils;
+using Data.DTO;
 using MediatR;
 using Service.Abstracts;
 using Service.Implementations;
@@ -20,16 +20,14 @@ namespace Core.Features.Levels.Commands.Handlers
                                                         , IRequestHandler<DeleteLevelCommand, Response<string>>
     {
         #region Fields
-        private readonly ILevelService _levelService;
-        private readonly ISubjectLevelService _subjectLevelService;
+        private readonly IUnitOfWorkService _unitOfWorkService;
         private readonly IMapper _mapper;
         #endregion
         #region Constructors
-        public LevelCommandHandler(ILevelService levelService, ISubjectLevelService subjectLevelService, IMapper mapper)
+        public LevelCommandHandler(IUnitOfWorkService unitOfWorkService, IMapper mapper)
 
         {
-            _subjectLevelService = subjectLevelService;
-            _levelService = levelService;
+            _unitOfWorkService = unitOfWorkService;
             _mapper = mapper;
         }
         #endregion
@@ -38,30 +36,30 @@ namespace Core.Features.Levels.Commands.Handlers
         {
 
             var LevelMapper = _mapper.Map<Level>(request);
-            var result = await _levelService.AddAsync(LevelMapper);
+            var result = await _unitOfWorkService.levelService.AddAsync(LevelMapper);
             SubjectLevelList FormattingSL = new();
             FormattingSL.SubjectId = request.SubjectId;
             FormattingSL.LevelId = result.Id;
             var SubjectLevelMapper = _mapper.Map<SubjectLevel>(FormattingSL);
 
-            var Result = await _subjectLevelService.AddAsync(SubjectLevelMapper);
+            var Result = await _unitOfWorkService.subjectLevelService.AddAsync(SubjectLevelMapper);
             return success("k");
         }
 
         public async Task<Response<string>> Handle(DeleteLevelCommand request, CancellationToken cancellationToken)
         {
-            var level = await _levelService.GetLevelByIdasync(request.Id);
+            var level = await _unitOfWorkService.levelService.GetLevelByIdasync(request.Id);
             if (level==null) return NotFound<string>("Notfouund");
-            var result = await _levelService.DeleteAsync(level);
+            var result = await _unitOfWorkService.levelService.DeleteAsync(level);
             return success("");
         }
         public async Task<Response<string>> Handle(EditLevelCommand request, CancellationToken cancellationToken)
         {
-            var oldLevel = await _levelService.GetLevelByIdasync(request.Id);
+            var oldLevel = await _unitOfWorkService.levelService.GetLevelByIdasync(request.Id);
             if (oldLevel == null)
                 return NotFound<string>("NotFouund");
             var Levelmapper = _mapper.Map<Level>(request);
-            var result = await _levelService.EditAsync(Levelmapper);
+            var result = await _unitOfWorkService.levelService.EditAsync(Levelmapper);
             if (result=="Success") return success("Edit Successfully");
             else return BadRequest<string>();
         }

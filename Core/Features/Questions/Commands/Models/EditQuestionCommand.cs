@@ -16,6 +16,6 @@ namespace Core.Features.Questions.Commands.Models
         public string Description { get; set; }
         public string Questions { get; set; }
         public SkillLevel SkillName { get; set; }
-        public Guid SubjectLevelId { get; set; }
+
     }
 }

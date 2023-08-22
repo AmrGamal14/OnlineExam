@@ -12,6 +12,6 @@ namespace Core.Features.Questions.Queries.Models
 {
     public class GetQuestionListQuery : IRequest<Response<List<GetQuestionListResponse>>>
     {
-        public Guid SubjectLevelId { get; set; }
+        public Guid LevelId { get; set; }
     }
 }

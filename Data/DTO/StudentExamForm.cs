@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Utils
+namespace Data.DTO
 {
     public class StudentExamForm
     {

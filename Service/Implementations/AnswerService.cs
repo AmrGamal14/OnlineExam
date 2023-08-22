@@ -12,45 +12,49 @@ namespace Service.Implementations
 {
     public class AnswerService : IAnswerService
     {
-        private readonly IAnswerRepository _answerRepository;
-        public AnswerService(IAnswerRepository answerRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public AnswerService(IUnitOfWork unitOfWork)
         {
-            _answerRepository = answerRepository;
-          
+            _unitOfWork=unitOfWork;
+
         }
 
         public async Task<string> AddListAsync(List<Answers> answers)
         {
-           await _answerRepository.AddListAsync(answers);
+           await _unitOfWork.answer.AddListAsync(answers);
+            _unitOfWork.Complete();
             return "Success";
         }
         public async Task<string> AddAsync(Answers answers)
         {
-            await _answerRepository.AddAsync(answers);
+            await _unitOfWork.answer.AddAsync(answers);
+            _unitOfWork.Complete();
             return "Success";
         }
 
         public async Task<string> DeleteAsync(Answers answers)
         {
-            await _answerRepository.DeleteAsync(answers);
+            await _unitOfWork.answer.DeleteAsync(answers);
+            _unitOfWork.Complete();
             return "Success";
         }
 
         public async Task<string> EditAsync(Answers answers)
         {
-            await _answerRepository.UpdateAsync(answers);
+            await _unitOfWork.answer.UpdateAsync(answers);
+            _unitOfWork.Complete();
             return "Success";
         }
 
         public async Task<Answers> GetAnswerByIdasync(Guid id)
         {
-            var answer =  _answerRepository.GetTableNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            var answer = _unitOfWork.answer.GetTableNoTracking().Where(x => x.Id == id).FirstOrDefault();
             return answer;
         }
 
         public Task<List<Answers>> GetAnswerByQuestionIdasync(Guid id)
         {
-            var answer = _answerRepository.GetAnswerListByQuestionId(id);
+            var answer = _unitOfWork.answer.GetAnswerListByQuestionId(id);
             return answer;
         }
     }

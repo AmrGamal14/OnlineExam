@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Core.Features.Levels.Commands.Models;
 using Data.Entities.Models;
-using Data.Utils;
+using Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

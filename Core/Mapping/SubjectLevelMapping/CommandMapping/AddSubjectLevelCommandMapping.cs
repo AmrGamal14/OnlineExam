@@ -1,6 +1,6 @@
 ﻿using Core.Features.Levels.Queries.Results;
 using Data.Entities.Models;
-using Data.Utils;
+using Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

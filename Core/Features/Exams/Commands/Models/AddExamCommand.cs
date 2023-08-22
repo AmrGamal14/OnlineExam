@@ -13,6 +13,6 @@ namespace Core.Features.Exams.Commands.Models
         public string Title { get; set; }
         public int QuestionCount { get; set; }
         public TimeSpan Duration { get; set; }
-        public Guid SubjectLevelId { get; set; }
+        public Guid LevelId { get; set; }
     }
 }

@@ -13,15 +13,16 @@ namespace Service.Implementations
 {
     public class SkillService : ISkillService
     {
-        private readonly ISkillRepository _skillRepository;
-        public SkillService ( ISkillRepository skillRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public SkillService(IUnitOfWork unitOfWork)
         {
-            _skillRepository = skillRepository;
+            _unitOfWork = unitOfWork;
         }
+        
 
         public async Task<Skill> GetByEnum(SkillLevel SkillName)
         {
-            var skill= await _skillRepository.GetByEnum(SkillName);
+            var skill= await _unitOfWork.skill.GetByEnum(SkillName);
             return skill;
         }
     }

@@ -10,5 +10,6 @@ namespace Service.Abstracts
     public interface IStudentExamSrevice
     {
         public Task<StudentExam> AddAsync(StudentExam studentExam);
+      
     }
 }

@@ -10,5 +10,6 @@ namespace Service.Abstracts
     public interface ISubjectLevelService
     {
         public Task<string> AddAsync(SubjectLevel subjectLevel);
+        public Task<SubjectLevel> GetSubjectLevelByLevelIdasync(Guid id);
     }
 }

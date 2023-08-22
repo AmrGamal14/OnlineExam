@@ -21,7 +21,13 @@ namespace Infrastructure.Repositories
         {
             _subjectsLevel=dBContext.Set<SubjectLevel>();
         }
-       
+
+        public async Task<SubjectLevel> GetSubjectLevelByLevelIdAscync(Guid id)
+        {
+            var subjectLevel = _subjectsLevel.FirstOrDefault(e => e.LevelId == id);
+            return subjectLevel;
+        }
+
         #endregion
 
     }

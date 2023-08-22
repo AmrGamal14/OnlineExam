@@ -11,15 +11,16 @@ namespace Service.Implementations
 {
     public class StudentExamSrevice : IStudentExamSrevice
     {
-        public readonly IStudentExamRepository _studentExamRepository;
+        public readonly IUnitOfWork _unitOfWork;
 
-        public StudentExamSrevice(IStudentExamRepository studentExamRepository)
+        public StudentExamSrevice(IUnitOfWork unitOfWork)
         {
-            _studentExamRepository = studentExamRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<StudentExam> AddAsync(StudentExam studentExam)
         {
-           var result= await _studentExamRepository.AddAsync(studentExam);
+           var result= await _unitOfWork.studentExam.AddAsync(studentExam);
+            _unitOfWork.Complete();
             return result ;
         }
     }

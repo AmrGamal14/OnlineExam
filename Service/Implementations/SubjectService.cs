@@ -12,41 +12,44 @@ namespace Service.Implementations
 {
     public class SubjectService : ISubjectService
     {
-        public readonly ISubjectRepository _subjectRepository;
+        public readonly IUnitOfWork _unitOfWork;
 
-        public SubjectService (ISubjectRepository subjectRepository)
+        public SubjectService (IUnitOfWork unitOfWork)
         {
-            _subjectRepository=subjectRepository;   
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<string> AddAsync(Subject subject)
         {
-           await _subjectRepository.AddAsync(subject);
+           await _unitOfWork.subject.AddAsync(subject);
+            _unitOfWork.Complete();
              return "Success";
         }
 
         public async Task<string> DeleteAsync(Subject subject)
         {
-            await _subjectRepository.DeleteAsync(subject);
+            await _unitOfWork.subject.DeleteAsync(subject);
+            _unitOfWork.Complete();
             return "Success";
         }
 
         public async Task<string> EditAsync(Subject subject)
         {
-           await _subjectRepository.UpdateAsync(subject);
+           await _unitOfWork.subject.UpdateAsync(subject);
+            _unitOfWork.Complete();
             return "Success";
         }
 
         public async Task<Subject> GetSubjectByIdasync(Guid id)
         {
-            var subject = _subjectRepository.GetTableNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            var subject = _unitOfWork.subject.GetTableNoTracking().Where(x => x.Id == id).FirstOrDefault();
             return subject;
         }
 
 
         public async Task<List<Subject>> GetSubjectsListAsync(string userId)
         {
-            return await _subjectRepository.GetSubjectListAscync(userId);
+            return await _unitOfWork.subject.GetSubjectListAscync(userId);
         }
     }
 }

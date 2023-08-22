@@ -2,7 +2,7 @@
 using Core.Features.Questions.Queries.Result;
 using Core.Features.Subjects.Queries.Result;
 using Data.Entities.Models;
-using Data.Utils;
+using Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

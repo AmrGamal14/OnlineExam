@@ -12,33 +12,36 @@ namespace Service.Implementations
 {
     public class ExamService : IExamService
     {
-        private readonly IExamRepository _examRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ExamService(IExamRepository examRepository)
+        public ExamService(IUnitOfWork unitOfWork)
         {
-            _examRepository=examRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Exam> AddAsync(Exam exam)
         {
-            var Exam =await _examRepository.AddAsync(exam);
+            var Exam =await _unitOfWork.exam.AddAsync(exam);
+            _unitOfWork.Complete();
             return Exam;
         }
 
         public async Task<string> DeleteAsync(Exam exam)
         {
-            await _examRepository.DeleteAsync(exam);
+            await _unitOfWork.exam.DeleteAsync(exam);
+            _unitOfWork.Complete();
             return "Success"; 
         }
 
         public async Task<string> EditAsync(Exam exam)
         {
-            await _examRepository.UpdateAsync(exam);
+            await _unitOfWork.exam.UpdateAsync(exam);
+            _unitOfWork.Complete();
             return "Success" ;
         }
         public async Task<Exam> GetByIdasync(Guid id)
         {
-            var exam = _examRepository.GetTableNoTracking().Where(x => x.Id==id).FirstOrDefault();
+            var exam = _unitOfWork.exam.GetTableNoTracking().Where(x => x.Id==id).FirstOrDefault();
             return exam;
 
         }

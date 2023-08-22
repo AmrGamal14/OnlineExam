@@ -22,33 +22,35 @@ namespace Core.Features.Subjects.Commands.Handlers
                                                         , IRequestHandler<DeleteSubjectCommand, Response<string>>
     {
         #region Fields
-        private readonly ISubjectService _subjectService;
+        private readonly IUnitOfWorkService _unitOfWorkService;
         private readonly IMapper _mapper;
         #endregion
         #region Constructors
-        public SubjectCommandHandler(ISubjectService subjectService , IMapper mapper)
+        public SubjectCommandHandler(IUnitOfWorkService unitOfWorkService , IMapper mapper)
 
         {
-            _subjectService = subjectService;
+            _unitOfWorkService = unitOfWorkService;
             _mapper = mapper;
         }
         #endregion
         public async Task<Response<string>> Handle(DeleteSubjectCommand request, CancellationToken cancellationToken)
         {
-            var subject = await _subjectService.GetSubjectByIdasync(request.Id);
+            var subject = await _unitOfWorkService.subjectService.GetSubjectByIdasync(request.Id);
             if (subject==null) 
                 return NotFound<string>("Notfouund");
-            var result = await _subjectService.DeleteAsync(subject);
+            var result = await _unitOfWorkService.subjectService.DeleteAsync(subject);
             return success("");
         }
 
         public async Task<Response<string>> Handle(EditSubjectCommand request, CancellationToken cancellationToken)
         {
-            var oldSubject = await _subjectService.GetSubjectByIdasync(request.Id);
+            var oldSubject = await _unitOfWorkService.subjectService.GetSubjectByIdasync(request.Id);
             if (oldSubject == null)
                 return NotFound<string>("NotFouund");
             var Subjectmapper = _mapper.Map<Subject>(request);
-            var result = await _subjectService.EditAsync(Subjectmapper);
+            Subjectmapper.AddEntityAudit();
+            Subjectmapper.UpdateEntityAudit();
+            var result = await _unitOfWorkService.subjectService.EditAsync(Subjectmapper);
             if (result=="Success") return success("Edit Successfully");
             else return BadRequest<string>();
         }
@@ -57,7 +59,7 @@ namespace Core.Features.Subjects.Commands.Handlers
         {
             var SubjectMapper = _mapper.Map<Subject>(request);
             SubjectMapper.AddEntityAudit();
-            var result = await _subjectService.AddAsync(SubjectMapper);
+            var result = await _unitOfWorkService.subjectService.AddAsync(SubjectMapper);
             return success(result);
         }
     }

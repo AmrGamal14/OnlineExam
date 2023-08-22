@@ -18,18 +18,18 @@ namespace Core.Features.Subjects.Queries.Handlers
     public class SubjectQueryHandler : ResponseHandler, IRequestHandler<GetSubjectListQuery, Response<List<GetSubjectListResponse>>>
     {
         #region Fields
-        private readonly ISubjectService _subjectService;
+        private readonly IUnitOfWorkService _unitOfWorkService;
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<SharedResources> _stringLocalizer;
         private readonly IAuditService _auditService;
         #endregion
         #region Constructors
-        public SubjectQueryHandler(ISubjectService subjectService,
+        public SubjectQueryHandler(IUnitOfWorkService unitOfWorkService,
                                     IMapper mapper,
                                      IStringLocalizer<SharedResources> stringLocalizer,
                                      IAuditService auditService)
         {
-            _subjectService=subjectService;
+            _unitOfWorkService = unitOfWorkService;
             _mapper=mapper;
             _stringLocalizer=stringLocalizer;
             _auditService=auditService;
@@ -38,7 +38,7 @@ namespace Core.Features.Subjects.Queries.Handlers
         #region Handle Functions
         public async Task<Response<List<GetSubjectListResponse>>> Handle(GetSubjectListQuery request, CancellationToken cancellationToken)
         {
-            var subjectList = await _subjectService.GetSubjectsListAsync(_auditService.UserId);
+            var subjectList = await _unitOfWorkService.subjectService.GetSubjectsListAsync(_auditService.UserId);
             var SubjectListMapper = _mapper.Map<List<GetSubjectListResponse>>(subjectList);
             return success(SubjectListMapper);
         }
