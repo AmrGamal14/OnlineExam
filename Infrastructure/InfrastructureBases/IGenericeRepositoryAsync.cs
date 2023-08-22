@@ -11,6 +11,7 @@ namespace Infrastructure.InfrastructureBases
     {
         Task DeleteRangeAsync(ICollection<T> entities);
         Task<T> GetByIdAsync(int id);
+        Task<T> GetByNameAsync(string name);
         Task SaveChangesAsync();
         IDbContextTransaction BeginTransaction();
         void commit();

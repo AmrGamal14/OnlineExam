@@ -14,7 +14,7 @@ namespace Core.Mapping.SubjectLevelMapping
     {
         public SubjectLevelProfile()
         {
-            AddSubjectLevel();
+            //AddSubjectLevel();
 
 
         }

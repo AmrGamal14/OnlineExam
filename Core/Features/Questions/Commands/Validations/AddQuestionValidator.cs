@@ -11,7 +11,7 @@ namespace Core.Features.Questions.Commands.Validations
 {
     public class AddQuestionValidator : AbstractValidator<AddQuestionAndAnswerCommand>
 
-    {
+    {private int x =0;
         #region Fields
         public AddQuestionValidator()
         {
@@ -22,22 +22,24 @@ namespace Core.Features.Questions.Commands.Validations
         #endregion
         #region Actions
         public void ApplyValidationsRules()
-        {
+        { 
             RuleFor(x => x.Title)
                 .NotEmpty().WithMessage("Title Must not Be Empty")
                 .NotNull().WithMessage("Title Must not Be Null"); 
             RuleFor(x => x.Description)
                 .NotNull().WithMessage("Description Must not Be Null");
             RuleFor(x => x.Questions)
-                .NotNull().WithMessage("Questions Must not Be Null"); 
+                .NotNull().WithMessage("Questions Must not Be Null");
+           
             RuleFor(x => x.SkillName)
                 .NotNull().WithMessage("SkillName Must not Be Null");
             RuleFor(x => x.LevelId)
                 .NotEmpty().WithMessage("LevelId Must not Be Empty")
                 .NotNull().WithMessage("LevelId Must not Be Null");
-            RuleFor(x => x.AnswersList)
+            RuleFor(x => x.AnswersLists)
                 .NotEmpty().WithMessage("AnswersList Must not Be Empty")
                 .NotNull().WithMessage("AnswersList Must not Be Null");
+                
 
         }
         public void ApplyCustomValidationsRules()

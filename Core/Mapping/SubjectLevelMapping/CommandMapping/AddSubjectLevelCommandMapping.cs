@@ -13,7 +13,7 @@ namespace Core.Mapping.SubjectLevelMapping
     {
         public void AddSubjectLevel()
         {
-            CreateMap<SubjectLevelList, SubjectLevel>();
+            //CreateMap<SubjectLevelList, SubjectLevel>();
         }
     }
 }

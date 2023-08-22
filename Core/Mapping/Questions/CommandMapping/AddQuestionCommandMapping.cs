@@ -12,7 +12,7 @@ namespace Core.Mapping.Questions
     {
         public void AddQuestiotCommand()
         {
-            CreateMap<QuestionList, Question>();
+            //CreateMap<QuestionList, Question>();
         }
     }
 }

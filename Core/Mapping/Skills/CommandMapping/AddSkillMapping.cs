@@ -13,7 +13,7 @@ namespace Core.Mapping.Skills
     {
         public void AddSkill()
         {
-            CreateMap<AddQuestionAndAnswerCommand, Skill>();
+            //CreateMap<AddQuestionAndAnswerCommand, Skill>();
         }
 
     }

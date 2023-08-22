@@ -12,6 +12,7 @@ namespace Service.Abstracts
     {
         public Task<List<Level>> GetLevelsListAsync();
         public Task<Level> GetLevelByIdasync(Guid id);
+        public Task<Level> GetLevelBySubjectId(Guid id, string name);
         public Task<List<Level>> GetLevelListBySubjectId(Guid id);
         public Task<Level> AddAsync(Level level);
         public Task<string> EditAsync(Level level);

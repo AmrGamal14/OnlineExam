@@ -11,7 +11,7 @@ namespace Core.Mapping.StudentExams
     {
         public StudentExamProfile()
         {
-            AddStudentExam();
+            //AddStudentExam();
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Core.Mapping.Levels
     {
         public LevelProfile()
         {
-            AddLevelCommand();
-            EditLevelCommand();
-            GetLevelListQuery();
+            //AddLevelCommand();
+            //EditLevelCommand();
+            //GetLevelListQuery();
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Core.Mapping.Subjects
     {
         public SubjectProfile ()
         {
-            AddSubjectCommand();
-            EditSubjectCommand();
-            GetSubjectListQuery();
+            //AddSubjectCommand();
+            //EditSubjectCommand();
+            //GetSubjectListQuery();
         }
     }
 }

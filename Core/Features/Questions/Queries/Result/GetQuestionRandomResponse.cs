@@ -15,10 +15,10 @@ namespace Core.Features.Questions.Queries.Result
         public string Description { get; set; }
         public string Questions { get; set; }
       
-        public List<AnswerList> AnswerList { get; set; }
+        public List<answerlist> answerlist { get; set; }
 
     }
-    public class AnswerList
+    public class answerlist
     {
         public Guid Id { get; set; }
         public string Answer { get; set; }

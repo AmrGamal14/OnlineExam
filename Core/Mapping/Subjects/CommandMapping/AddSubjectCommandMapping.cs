@@ -13,7 +13,7 @@ namespace Core.Mapping.Subjects
     {
         public void AddSubjectCommand()
         {
-            CreateMap<AddSubjectCommand, Subject >();
+            //CreateMap<AddSubjectCommand, Subject >();
         }
     }
 }

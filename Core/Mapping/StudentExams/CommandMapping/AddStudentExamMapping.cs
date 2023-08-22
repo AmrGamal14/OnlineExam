@@ -12,7 +12,7 @@ namespace Core.Mapping.StudentExams
     {
         public void AddStudentExam()
         {
-            CreateMap<StudentExamForm, StudentExam>();
+            //CreateMap<StudentExamForm, StudentExam>();
         }
     }
 }

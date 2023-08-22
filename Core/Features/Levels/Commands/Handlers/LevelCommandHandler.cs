@@ -34,7 +34,8 @@ namespace Core.Features.Levels.Commands.Handlers
     
         public async Task<Response<string>> Handle(AddLevelCommand request, CancellationToken cancellationToken)
         {
-
+            var levellist = await _unitOfWorkService.levelService.GetLevelBySubjectId(request.SubjectId,request.Name);
+            if (levellist!=null)return BadRequest<string>("Level is exist");
             var LevelMapper = _mapper.Map<Level>(request);
             var result = await _unitOfWorkService.levelService.AddAsync(LevelMapper);
             SubjectLevelList FormattingSL = new();

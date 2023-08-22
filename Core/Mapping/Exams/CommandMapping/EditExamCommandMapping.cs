@@ -12,7 +12,7 @@ namespace Core.Mapping.Exams
     {
         public void EditExam()
         {
-            CreateMap<EditExamCommand, Exam>();
+            //CreateMap<EditExamCommand, Exam>();
         }
     }
 }

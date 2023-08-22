@@ -12,5 +12,6 @@ namespace Infrastructure.Abstracts
     {
         public Task<List<Level>> GetLevelListAscync();
         public Task<List<Level>> GetLevelListBySubjectId(Guid id);
+        public Task<Level> GetLevelBySubjectId(Guid id, string name);
     }
 }

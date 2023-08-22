@@ -11,6 +11,7 @@ namespace Infrastructure.Abstracts
     public interface ISubjectLevelRepository : IGenericeRepositoryAsync<SubjectLevel>
     {
         public Task<SubjectLevel> GetSubjectLevelByLevelIdAscync(Guid id);
+      
 
     }
 }

@@ -11,9 +11,9 @@ namespace Core.Mapping.ApplicationUser
     {
         public ApplicationUserProfil()
         {
-            AddUserMapping();
-             GetListUser();
-            UpdateUserMapping();
+        //    AddUserMapping();
+        //     GetListUser();
+        //    UpdateUserMapping();
         }
         
     }

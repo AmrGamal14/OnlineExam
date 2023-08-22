@@ -27,12 +27,7 @@ namespace Core.Features.Questions.Queries.Handlers
                                                           , IRequestHandler<GetQuestionRandom, Response<List<GetQuestionRandomResponse>>>
     {
         #region Fields
-        //private readonly IQuestionService _questionService;
-        //private readonly IAnswerService _answerService;
-        //private readonly IExamService _examService;
-        //private static ISubjectLevelService _subjectLevelService;
-        //private static IStudentExamSrevice _studentExamSrevice;
-        //private static IExamQuestionService _examQuestionService;
+
         private static IUnitOfWorkService _unitOfWorkService;
         private readonly IAuditService _auditService;
         private static IServiceScopeFactory _serviceProvider;

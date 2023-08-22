@@ -11,10 +11,10 @@ namespace Core.Mapping.Questions
     {
         public QuestionProfile()
         {
-            AddQuestiotCommand();
-            EditQuestion();
-            GetQuestionListQuery();
-            GetQuestionRandom();
+        //    AddQuestiotCommand();
+        //    EditQuestion();
+        //    GetQuestionListQuery();
+        //    GetQuestionRandom();
         }
     }
 }

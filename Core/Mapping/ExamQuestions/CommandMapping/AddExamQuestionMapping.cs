@@ -11,9 +11,9 @@ namespace Core.Mapping.ExamQuestions
     { 
         public void AddExamQuestion()
         {
-            CreateMap<Question,ExamQuestion>()
-                 .ForMember(dest => dest.QuestionId, opt => opt.MapFrom(src => src.Id));
-            CreateMap<StudentExam, ExamQuestion>();
+            //CreateMap<Question,ExamQuestion>()
+            //     .ForMember(dest => dest.QuestionId, opt => opt.MapFrom(src => src.Id));
+            //CreateMap<StudentExam, ExamQuestion>();
         }
     }
 }

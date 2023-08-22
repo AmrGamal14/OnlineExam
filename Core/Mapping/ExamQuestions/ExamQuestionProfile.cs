@@ -11,7 +11,7 @@ namespace Core.Mapping.ExamQuestions
     {
         public ExamQuestionProfile()
         {
-            AddExamQuestion();
+            //AddExamQuestion();
         }
     }
 }

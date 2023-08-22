@@ -11,7 +11,7 @@ namespace Core.Mapping.Skills
     {
         public SkillProfile()
         {
-            AddSkill();
+            //AddSkill();
         }
     }
 }

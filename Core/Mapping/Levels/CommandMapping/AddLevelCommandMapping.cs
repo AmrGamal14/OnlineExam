@@ -8,7 +8,7 @@ namespace Core.Mapping.Levels
     {
          public void AddLevelCommand()
         {
-            CreateMap<AddLevelCommand, Level>();
+            //CreateMap<AddLevelCommand, Level>();
         }
     }
 }

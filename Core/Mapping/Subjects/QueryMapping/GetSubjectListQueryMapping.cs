@@ -12,7 +12,7 @@ namespace Core.Mapping.Subjects
     {
         public void GetSubjectListQuery()
         {
-            CreateMap<Subject, GetSubjectListResponse>();
+            //CreateMap<Subject, GetSubjectListResponse>();
         }
     }
 }

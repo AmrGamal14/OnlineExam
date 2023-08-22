@@ -13,7 +13,7 @@ namespace Core.Mapping.Levels
         public void EditLevelCommand()
         {
 
-            CreateMap<EditLevelCommand, Level>();
+            //CreateMap<EditLevelCommand, Level>();
         }
     }
 }

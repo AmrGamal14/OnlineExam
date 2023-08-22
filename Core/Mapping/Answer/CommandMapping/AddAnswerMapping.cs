@@ -13,7 +13,7 @@ namespace Core.Mapping.Answer
     {
         public void AddAnswer()
         {
-            CreateMap<AddAnswerCommand, Answers>();
+            //CreateMap<AddAnswerCommand, Answers>();
         }
     }
 }

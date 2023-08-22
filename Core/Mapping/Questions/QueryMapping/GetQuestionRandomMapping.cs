@@ -12,10 +12,10 @@ namespace Core.Mapping.Questions
     {
         public void GetQuestionRandom()
         {
-            CreateMap<Answers, AnswerList>();
-            CreateMap<Question, GetQuestionRandomResponse>()
-                .ForMember(dest => dest.AnswerList, opt => opt.MapFrom(src => src.Answers));
-            CreateMap<Exam, GetQuestionRandomResponse>();
+            //CreateMap<Answers, AnswerList>();
+            //CreateMap<Question, GetQuestionRandomResponse>()
+            //    .ForMember(dest => dest.AnswerList, opt => opt.MapFrom(src => src.Answers));
+            //CreateMap<Exam, GetQuestionRandomResponse>();
                
         }
     }

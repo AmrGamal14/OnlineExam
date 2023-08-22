@@ -12,6 +12,7 @@ namespace Service.Abstracts
     {
         public Task<List<Subject>> GetSubjectsListAsync(string userId);
         public Task<Subject> GetSubjectByIdasync(Guid id);
+        public Task<Subject> GetSubjectByNameasync(string name,string id);
         public Task<string> AddAsync(Subject subject);
         public Task<string> EditAsync(Subject subject);
         public Task<string> DeleteAsync(Subject subject);

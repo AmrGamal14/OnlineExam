@@ -12,7 +12,7 @@ namespace Core.Mapping.Questions
     {
         public void EditQuestion()
         {
-            CreateMap<EditQuestionCommand, Question>();
+            //CreateMap<EditQuestionCommand, Question>();
         }
     }
 }

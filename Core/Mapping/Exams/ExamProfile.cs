@@ -11,8 +11,8 @@ namespace Core.Mapping.Exams
     {
         public ExamProfile()
         {
-            AddExam();
-            EditExam();
+            //AddExam();
+            //EditExam();
 
         }
     }

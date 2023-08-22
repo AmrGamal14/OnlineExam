@@ -4,6 +4,7 @@ using Core.Extensions;
 using Core.Features.Subjects.Commands.Models;
 using Core.Resources;
 using Data.Entities.Models;
+using Infrastructure.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -24,11 +25,13 @@ namespace Core.Features.Subjects.Commands.Handlers
         #region Fields
         private readonly IUnitOfWorkService _unitOfWorkService;
         private readonly IMapper _mapper;
+        private readonly IAuditService _auditService;
         #endregion
         #region Constructors
-        public SubjectCommandHandler(IUnitOfWorkService unitOfWorkService , IMapper mapper)
+        public SubjectCommandHandler(IUnitOfWorkService unitOfWorkService,IAuditService auditService , IMapper mapper)
 
         {
+            _auditService=auditService;
             _unitOfWorkService = unitOfWorkService;
             _mapper = mapper;
         }
@@ -57,6 +60,8 @@ namespace Core.Features.Subjects.Commands.Handlers
 
         public async Task<Response<string>> Handle(AddSubjectCommand request, CancellationToken cancellationToken)
         {
+            var oldsubject = await _unitOfWorkService.subjectService.GetSubjectByNameasync(request.Name, _auditService.UserId);
+            if (oldsubject != null) return BadRequest <string>("Subject is exist");
             var SubjectMapper = _mapper.Map<Subject>(request);
             SubjectMapper.AddEntityAudit();
             var result = await _unitOfWorkService.subjectService.AddAsync(SubjectMapper);

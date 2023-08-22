@@ -10,8 +10,8 @@ namespace Data.Entities.Models
     public class Question :  BaseEntityAudit<Guid>
     {
        
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
         public string Questions { get; set; }
         public Guid SubjectLevelId { get; set; }
         public SubjectLevel SubjectLevel { get; set; }

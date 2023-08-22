@@ -17,10 +17,10 @@ namespace Core.Mapping.Questions
         public void GetQuestionListQuery()
         {
 
-            CreateMap<Answers, AnswersList>();
+            //CreateMap<Answers, AnswersList>();
 
-            CreateMap<Question, GetQuestionListResponse>()
-            .ForMember(dest => dest.AnswersList, opt => opt.MapFrom(src => src.Answers));
+            //CreateMap<Question, GetQuestionListResponse>()
+            //.ForMember(dest => dest.AnswersList, opt => opt.MapFrom(src => src.Answers));
         }
     }
 }

@@ -35,6 +35,11 @@ namespace Core.Features.Questions.Commands.Handlers
             var subjectlevel = await _unitOfWorkService.subjectLevelService.GetSubjectLevelByLevelIdasync(request.LevelId);
             if (subjectlevel == null)
                 return NotFound<string>("NotFouund");
+            var answerlist = request.AnswersLists.FirstOrDefault(q => q.IsCorrect==true);
+            if (answerlist==null)
+                return BadRequest<string>("Answers Must Includ answer equal true");
+            int countt =request.AnswersLists.Count();
+            if (countt<=1) return BadRequest<string>("Answer must be more then one");
             var skill = await _unitOfWorkService.skillService.GetByEnum(request.SkillName);
             QuestionList FormattingSL = new();
             FormattingSL.Title = request.Title;
@@ -45,7 +50,7 @@ namespace Core.Features.Questions.Commands.Handlers
             var QuestionMapper = _mapper.Map<Question>(FormattingSL);
             QuestionMapper.AddEntityAudit();
             var Result = await _unitOfWorkService.questionService.AddAsync(QuestionMapper);
-            var answerMap = _mapper.Map<List<Answers>>(request.AnswersList);
+            var answerMap = _mapper.Map<List<Answers>>(request.AnswersLists);
             answerMap.ForEach(qId => qId.QuestionId = Result.Id);
             var result= await _unitOfWorkService.answerService.AddListAsync(answerMap);
 

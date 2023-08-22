@@ -17,10 +17,10 @@ namespace Core.Features.Questions.Commands.Models
         public string Questions { get; set; }
         public SkillLevel SkillName { get; set; }
         public Guid LevelId { get; set; }
-        public List<AnswersList> AnswersList { get; set; }
+        public List<AnswersLists> AnswersLists { get; set; }
      
     }
-    public class AnswersList
+    public class AnswersLists
     {
         public string Answer { get; set; }
         public bool IsCorrect { get; set; }

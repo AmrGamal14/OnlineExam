@@ -13,7 +13,7 @@ namespace Core.Mapping.Levels
     {
         public void GetLevelListQuery()
         {
-            CreateMap<Level, GetLevelListResponse>();
+            //CreateMap<Level, GetLevelListResponse>();
         }
     }
 }

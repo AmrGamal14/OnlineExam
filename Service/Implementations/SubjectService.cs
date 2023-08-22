@@ -51,5 +51,11 @@ namespace Service.Implementations
         {
             return await _unitOfWork.subject.GetSubjectListAscync(userId);
         }
+        public async Task<Subject> GetSubjectByNameasync(string name ,string id)
+        {
+            var subject = _unitOfWork.subject.GetTableNoTracking().Where(x => x.Name==name&&x.CreatedBy==id).FirstOrDefault();
+            return subject;
+
+        }
     }
 }

@@ -132,7 +132,12 @@ namespace Infrastructure.InfrastructureBases
 
         }
 
-       
+        public async Task<T> GetByNameAsync(string name)
+        {
+            return await _dbContext.Set<T>().FindAsync(name);
+        }
+
+
 
         #endregion
     }

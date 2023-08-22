@@ -35,5 +35,12 @@ namespace Infrastructure.Repositories
                 .Select(l => l.Level).ToListAsync();
             return Levels;
         }
+        public async Task<Level> GetLevelBySubjectId(Guid id , string name)
+        {
+
+            var Levels =  _subjectLevel.Include(l => l.Level).Where(x => x.SubjectId == id&&x.Level.Name==name)
+                .Select(l => l.Level).FirstOrDefault();
+            return Levels;
+        }
     }
 }

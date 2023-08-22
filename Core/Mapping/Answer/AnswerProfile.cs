@@ -11,10 +11,10 @@ namespace Core.Mapping.Answer
     {
         public AnswerProfile()
         {
-            AddAnswer();
-            AddAnswerCommand();
-            EditAnswer();
-            GetAnswerListQuery();
+            //AddAnswer();
+            //AddAnswerCommand();
+            //EditAnswer();
+            //GetAnswerListQuery();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Core.Mapping.ApplicationUser
     {
         public void GetListUser()
         {
-            CreateMap<User, GetUserListResult>();
+            //CreateMap<User, GetUserListResult>();
         }
     }
 }

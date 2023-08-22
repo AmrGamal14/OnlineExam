@@ -12,7 +12,7 @@ namespace Core.Mapping.ApplicationUser
     {
         public void UpdateUserMapping()
         {
-            CreateMap<UpdateUserCommand, User>();
+            //CreateMap<UpdateUserCommand, User>();
 
         }
     }

@@ -12,8 +12,8 @@ namespace Core.Mapping.ApplicationUser
     public partial class ApplicationUserProfil
     { public void AddUserMapping ()
         {
-            CreateMap<AddUserCommand, User>();
-            //CreateMap<AddUserCommand, RoleEnum>();
+            //CreateMap<AddUserCommand, User>();
+           
         }
     }
 }

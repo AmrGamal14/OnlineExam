@@ -54,6 +54,12 @@ namespace Service.Implementations
             var Level =await _unitOfWork.level.GetLevelListBySubjectId(id);
             return Level;
 
+        } 
+        public async Task <Level> GetLevelBySubjectId(Guid id,string name)
+        {
+            var Level =await _unitOfWork.level.GetLevelBySubjectId(id,name);
+            return Level;
+
         }
 
         public async Task<List<Level>> GetLevelsListAsync()

@@ -13,7 +13,7 @@ namespace Core.Mapping.Answer
     {
         public void GetAnswerListQuery()
         {
-            CreateMap<Answers, GetAnswerListResponse>();
+            //CreateMap<Answers, GetAnswerListResponse>();
         }
     }
 }

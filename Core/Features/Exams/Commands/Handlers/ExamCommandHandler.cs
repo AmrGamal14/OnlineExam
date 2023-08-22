@@ -42,7 +42,8 @@ namespace Core.Features.Exams.Commands.Handlers
             ExamMapper.AddEntityAudit();
             var result = await _unitOfWorkService.examService.AddAsync(ExamMapper);
             var ExamUrl = GenerateUrl(_httpContextAccessor, result.Id);
-
+            ExamMapper.url=ExamUrl;
+            var res = await _unitOfWorkService.examService.EditAsync(ExamMapper);
             return success($"{ExamUrl}");
         }
         public static Uri GenerateUrl(IHttpContextAccessor accessor,  Guid ExamId)
@@ -60,9 +61,9 @@ namespace Core.Features.Exams.Commands.Handlers
             var OldExam = await _unitOfWorkService.examService.GetByIdasync(request.Id);
             if (OldExam == null)
                 return NotFound<string>("NotFouund");
-            var Levelmapper = _mapper.Map<Exam>(request);
-            Levelmapper.SubjectLevelId=OldExam.SubjectLevelId;
-            var result = await _unitOfWorkService.examService.EditAsync(Levelmapper);
+            var Exammapper = _mapper.Map<Exam>(request);
+            Exammapper.SubjectLevelId=OldExam.SubjectLevelId;
+            var result = await _unitOfWorkService.examService.EditAsync(Exammapper);
             if (result=="Success") return success("Edit Successfully");
             else return BadRequest<string>();
         }
