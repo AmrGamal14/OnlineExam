@@ -12,8 +12,6 @@ namespace Data.Entities.Models
         
         public Guid StudentExamId { get; set; }
         public StudentExam StudentExam { get; set; }
-        public Guid ExamQuestionId { get; set; }
-        public ExamQuestion ExamQuestion { get; set; }
         public Guid AnswerId { get; set; }
         public Answers Answer { get; set; }
         public bool IsCorrect { get; set; } 

@@ -22,6 +22,12 @@ namespace Infrastructure.Repositories
             _studentExams=dBContext.Set<StudentExam>();
 
         }
+
+        public async Task<StudentExam> GetStudentExamAscync(Guid userId, Guid id)
+        {
+            var StudentExam = await _studentExams.Where(cb => cb.UserId == userId && cb.ExamId==id).FirstOrDefaultAsync();
+            return StudentExam;
+        }
         #endregion
     }
 }

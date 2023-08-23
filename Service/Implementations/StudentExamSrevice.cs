@@ -20,8 +20,19 @@ namespace Service.Implementations
         public async Task<StudentExam> AddAsync(StudentExam studentExam)
         {
            var result= await _unitOfWork.studentExam.AddAsync(studentExam);
-            _unitOfWork.Complete();
             return result ;
+        }
+
+        public async Task<StudentExam> GetStudentExamAscync(Guid userId, Guid id)
+        {
+            var result = await _unitOfWork.studentExam.GetStudentExamAscync(userId,id);
+            return result;
+        }
+
+        public async Task<string> UpdateAsync(StudentExam studentExam)
+        {
+            await _unitOfWork.studentExam.UpdateAsync(studentExam);
+            return "Success";
         }
     }
 }

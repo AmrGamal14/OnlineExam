@@ -22,6 +22,7 @@ namespace Infrastructure.Repositories
         public IStudentExamRepository studentExam { get; private set; }
         public ISubjectLevelRepository subjectLevel { get; private set; }
         public ISubjectRepository subject { get; private set; }
+        public IStudentResultRepository studentResult { get; private set; }
 
         public UnitOfWork(ApplicationDBContext context)
         {
@@ -36,10 +37,7 @@ namespace Infrastructure.Repositories
             studentExam = new StudentExamRepository(_Context);
             subjectLevel = new SubjectLevelRepository(_Context);
             subject = new SubjectRepository(_Context);
-        }
-        public int Complete()
-        {
-            return _Context.SaveChanges();
+            studentResult=new StudentResultRepository(_Context);
         }
 
         public void Dispose()

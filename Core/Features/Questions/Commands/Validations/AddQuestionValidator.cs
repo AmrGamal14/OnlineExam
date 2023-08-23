@@ -36,9 +36,7 @@ namespace Core.Features.Questions.Commands.Validations
             RuleFor(x => x.LevelId)
                 .NotEmpty().WithMessage("LevelId Must not Be Empty")
                 .NotNull().WithMessage("LevelId Must not Be Null");
-            RuleFor(x => x.AnswersLists)
-                .NotEmpty().WithMessage("AnswersList Must not Be Empty")
-                .NotNull().WithMessage("AnswersList Must not Be Null");
+
                 
 
         }

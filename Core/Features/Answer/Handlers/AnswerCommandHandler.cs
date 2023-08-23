@@ -4,7 +4,9 @@ using Core.Features.Answer.Command.Models;
 using Core.Features.Answer.Queries.Models;
 using Core.Features.Answer.Queries.Result;
 using Core.Features.Questions.Commands.Models;
+using Data.DTO;
 using Data.Entities.Models;
+using Infrastructure.Interfaces;
 using MediatR;
 using Service.Abstracts;
 using Service.Implementations;
@@ -19,13 +21,16 @@ namespace Core.Features.Answer.Handlers
     public class AnswerCommandHandler : ResponseHandler, IRequestHandler<EditAnswerCommand, Response<string>>
                                                          , IRequestHandler<DeleteAnswerCommand, Response<string>>
                                                          , IRequestHandler<AddAnswerCommand, Response<string>>
+                                                         , IRequestHandler<CorrectionAnswerCommand, Response<string>>
                                                          , IRequestHandler<GetAnswerListQuery, Response<List<GetAnswerListResponse>>>
 
     {
         private readonly IUnitOfWorkService _unitOfWorkService;
         private readonly IMapper _mapper;
-        public AnswerCommandHandler(IUnitOfWorkService unitOfWorkService, IMapper mapper)
+        private readonly IAuditService _auditService;
+        public AnswerCommandHandler(IUnitOfWorkService unitOfWorkService, IAuditService auditService,IMapper mapper)
         {
+            _auditService = auditService;
             _unitOfWorkService = unitOfWorkService;
             _mapper=mapper;
 
@@ -63,6 +68,38 @@ namespace Core.Features.Answer.Handlers
             var AnswerList = await _unitOfWorkService.answerService.GetAnswerByQuestionIdasync(request.QuestionId);
             var AnswerListMapper = _mapper.Map<List<GetAnswerListResponse>>(AnswerList);
             return success(AnswerListMapper);
+        }
+
+        public async Task<Response<string>> Handle(CorrectionAnswerCommand request, CancellationToken cancellationToken)
+        {
+            var Answers = await _unitOfWorkService.answerService.GetByMultipleIdsAsync(request.correctLists.Select(a => a.AnswerId).ToList());
+            if (Answers.Count == 0)
+                return BadRequest<string>("no answers found");
+            var correctAnswers = Answers.Where(a => a.IsCorrect == true);
+            var Score = correctAnswers.Count();
+            var answerlist = new List<AnswerList>();
+            foreach(var x in Answers)
+            {
+                answerlist.Add(new AnswerList{
+                    Id=x.Id,
+                    IsCorrect=x.IsCorrect
+                });
+            }
+            ScoreExam FormattingSL = new();
+            FormattingSL.ExamId=request.ExamId;
+            FormattingSL.ExamDate=DateTime.UtcNow;
+            FormattingSL.UserId=  Guid.Parse(_auditService.UserId);
+            FormattingSL.Score=Score;
+            var StudentExamMapper = _mapper.Map<StudentExam>(FormattingSL);
+            var Result = await _unitOfWorkService.studentExamSrevice.AddAsync(StudentExamMapper);
+            var ExamQuestionMap = _mapper.Map<List<ExamQuestion>>(request.correctLists);
+            ExamQuestionMap.ForEach(qId => qId.StudentExamId = Result.Id);
+            var result = await _unitOfWorkService.examQuestionService.AddListAsync(ExamQuestionMap);
+            var StudentExamResultMap = _mapper.Map<List<StudentExamResult>>(answerlist);
+            StudentExamResultMap.ForEach(qId => qId.StudentExamId = Result.Id);
+            var StudentResult = await _unitOfWorkService.studentResultService.AddListAsync(StudentExamResultMap);
+            return success($"Your score is :{Score}");
+
         }
     }
 }

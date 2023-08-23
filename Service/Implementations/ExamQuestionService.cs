@@ -20,7 +20,6 @@ namespace Service.Implementations
         public async Task<string> AddListAsync(List<ExamQuestion> examQuestion)
         {
             var result = await _unitOfWork.examQuestion.AddListAsync(examQuestion);
-            _unitOfWork.Complete();
             return "Success";
         }
     

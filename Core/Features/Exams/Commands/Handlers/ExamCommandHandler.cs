@@ -4,6 +4,7 @@ using Core.Extensions;
 using Core.Features.Exams.Commands.Models;
 using Core.Features.Levels.Commands.Models;
 using Data.Entities.Models;
+using Infrastructure.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Service.Abstracts;
@@ -23,10 +24,12 @@ namespace Core.Features.Exams.Commands.Handlers
         private readonly IMapper _mapper;
         private readonly IUnitOfWorkService _unitOfWorkService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public ExamCommandHandler (IMapper mapper,IUnitOfWorkService unitOfWorkService, IExamService examService, IHttpContextAccessor httpContextAccessor)
+        private readonly IAuditService _auditService;
+        public ExamCommandHandler (IMapper mapper,IAuditService auditService,IUnitOfWorkService unitOfWorkService, IExamService examService, IHttpContextAccessor httpContextAccessor)
         {
 
             _mapper = mapper;
+            _auditService = auditService;
             _unitOfWorkService= unitOfWorkService;  
             _httpContextAccessor=httpContextAccessor;
         }
@@ -34,7 +37,10 @@ namespace Core.Features.Exams.Commands.Handlers
         public async Task<Response<string>> Handle(AddExamCommand request, CancellationToken cancellationToken)
         {
             var subjectlevel=await _unitOfWorkService.subjectLevelService.GetSubjectLevelByLevelIdasync(request.LevelId);
-
+            var questionlist = await _unitOfWorkService.questionService.GetQuestionListAsync(_auditService.UserId, subjectlevel.Id);
+            int countt = questionlist.Count();
+            if (request.QuestionCount > countt)
+                return BadRequest<string>("Question Count more then your question");
             if (subjectlevel == null)
                 return NotFound<string>("NotFouund");
             var ExamMapper = _mapper.Map<Exam>(request);
@@ -50,7 +56,8 @@ namespace Core.Features.Exams.Commands.Handlers
         {
             if (ExamId.ToString() != null)
             {
-                Uri uri = new Uri($"{accessor.HttpContext.Request.Scheme}://{accessor.HttpContext.Request.Host}/ExamQuestion?ExamId={ExamId}");
+                //Uri uri = new Uri($"{accessor.HttpContext.Request.Scheme}://{accessor.HttpContext.Request.Host}/ExamQuestion?ExamId={ExamId}");
+                Uri uri = new Uri($"http://localhost:4200/student/startExam/{ExamId}");
                 return uri;
             }
             return null;

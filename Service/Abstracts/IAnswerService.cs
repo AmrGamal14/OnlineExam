@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,5 +16,6 @@ namespace Service.Abstracts
         public Task<string> AddAsync(Answers answers);
         public Task<string> EditAsync(Answers answers);
         public Task<string> DeleteAsync(Answers answers);
+        public Task<List<Answers>> GetByMultipleIdsAsync(List<Guid> Ids, params Expression<Func<Answers, object>>[] includeProperties);
     }
 }

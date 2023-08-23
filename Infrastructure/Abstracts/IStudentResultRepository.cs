@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Abstracts
 {
-    public interface IStudentExamRepository : IGenericeRepositoryAsync<StudentExam>
+    public interface IStudentResultRepository : IGenericeRepositoryAsync<StudentExamResult>
     {
-        public Task<StudentExam> GetStudentExamAscync(Guid userId, Guid id);
     }
 }

@@ -11,7 +11,6 @@ namespace Infrastructure.Abstracts
     public interface IUnitOfWork: IDisposable
 
     {
-        //IGenericeRepositoryAsync<Answers> Answer { get; }
         ILevelRepository level { get; }
         IAnswerRepository answer { get; }
         IExamQuestionRepository examQuestion { get; }
@@ -21,8 +20,8 @@ namespace Infrastructure.Abstracts
         IStudentExamRepository studentExam { get; }
         ISubjectLevelRepository subjectLevel { get; }
         ISubjectRepository subject { get; }
+        IStudentResultRepository studentResult { get; }
 
-        int Complete();
 
     }
 }

@@ -3,6 +3,7 @@ using Core.Features.Answer.Queries.Models;
 using Core.Features.Levels.Queries.Models;
 using Core.Features.Questions.Commands.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AnswerController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -25,6 +27,12 @@ namespace API.Controllers
         }
         [HttpPost("/AddAnswer")]
         public async Task<IActionResult> Create([FromBody] AddAnswerCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        } 
+        [HttpPost("/CorrectAnswer")]
+        public async Task<IActionResult> Correct([FromBody] CorrectionAnswerCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);

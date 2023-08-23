@@ -13,7 +13,7 @@ namespace Service.Implementations
 {
     public class LevelService : ILevelService 
     {  
-        private readonly IUnitOfWork _unitOfWork;   
+        private readonly IUnitOfWork _unitOfWork;     
 
         public LevelService( IUnitOfWork unitOfWork)
         {
@@ -23,14 +23,12 @@ namespace Service.Implementations
         public async Task<Level> AddAsync(Level level)
         {
             var result = await _unitOfWork.level.AddAsync(level);
-            _unitOfWork.Complete();
             return result;
         }
 
         public async Task<string> DeleteAsync(Level level)
         {
             await _unitOfWork.level.DeleteAsync(level);
-            _unitOfWork.Complete();
             return "Success";
 
         }
@@ -38,7 +36,6 @@ namespace Service.Implementations
         public async Task<string> EditAsync(Level level)
         {
             await _unitOfWork.level.UpdateAsync(level);
-            _unitOfWork.Complete();
             return "Success";
         }
 

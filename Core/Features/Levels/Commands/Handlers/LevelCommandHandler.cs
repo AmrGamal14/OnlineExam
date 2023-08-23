@@ -21,13 +21,15 @@ namespace Core.Features.Levels.Commands.Handlers
     {
         #region Fields
         private readonly IUnitOfWorkService _unitOfWorkService;
+        private readonly ILevelService _levelService;
         private readonly IMapper _mapper;
         #endregion
         #region Constructors
-        public LevelCommandHandler(IUnitOfWorkService unitOfWorkService, IMapper mapper)
+        public LevelCommandHandler(IUnitOfWorkService unitOfWorkService,ILevelService levelService, IMapper mapper)
 
         {
             _unitOfWorkService = unitOfWorkService;
+            _levelService = levelService;
             _mapper = mapper;
         }
         #endregion
@@ -37,7 +39,7 @@ namespace Core.Features.Levels.Commands.Handlers
             var levellist = await _unitOfWorkService.levelService.GetLevelBySubjectId(request.SubjectId,request.Name);
             if (levellist!=null)return BadRequest<string>("Level is exist");
             var LevelMapper = _mapper.Map<Level>(request);
-            var result = await _unitOfWorkService.levelService.AddAsync(LevelMapper);
+            var result = await _levelService.AddAsync(LevelMapper);
             SubjectLevelList FormattingSL = new();
             FormattingSL.SubjectId = request.SubjectId;
             FormattingSL.LevelId = result.Id;

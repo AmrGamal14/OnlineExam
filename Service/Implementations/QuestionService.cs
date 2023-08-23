@@ -21,21 +21,18 @@ namespace Service.Implementations
         public async Task<Question> AddAsync(Question question)
         {
            await _unitOfWork.question.AddAsync(question);
-            _unitOfWork.Complete();
             return question;
         }
 
         public async Task<string> DeleteAsync(Question question)
         {
            await _unitOfWork.question.DeleteAsync(question);
-            _unitOfWork.Complete();
             return "Success";
         }
 
         public async Task<string> EditAsync(Question question)
         {
             await _unitOfWork.question.UpdateAsync(question);
-            _unitOfWork.Complete();
             return "Success";
         }
 
@@ -48,8 +45,6 @@ namespace Service.Implementations
         public async Task<List<Question>> GetQuestionRandomAsync(Guid id)
         {
            var Question =await _unitOfWork.question.GetRandomQuestions(id);
-            //var s = new List<Answers>();
-            //s.ForEach(qId => qId.QuestionId = Question.Id);
             return Question;
         }
 

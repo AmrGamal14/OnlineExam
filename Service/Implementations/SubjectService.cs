@@ -22,21 +22,18 @@ namespace Service.Implementations
         public async Task<string> AddAsync(Subject subject)
         {
            await _unitOfWork.subject.AddAsync(subject);
-            _unitOfWork.Complete();
              return "Success";
         }
 
         public async Task<string> DeleteAsync(Subject subject)
         {
             await _unitOfWork.subject.DeleteAsync(subject);
-            _unitOfWork.Complete();
             return "Success";
         }
 
         public async Task<string> EditAsync(Subject subject)
         {
            await _unitOfWork.subject.UpdateAsync(subject);
-            _unitOfWork.Complete();
             return "Success";
         }
 

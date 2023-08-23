@@ -22,6 +22,7 @@ namespace Infrastructure
                 .AddTransient<IExamRepository, ExamRepository>()
                 .AddTransient<IAnswerRepository, AnswerRepository>()
                 .AddTransient<IExamQuestionRepository, ExamQuestionRepository>()
+                .AddTransient<IStudentResultRepository, StudentResultRepository>()
                 .AddTransient<IUnitOfWork, UnitOfWork>()
                 .AddTransient<IStudentExamRepository, StudentExamRepository>();
                

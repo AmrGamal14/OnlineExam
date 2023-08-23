@@ -17,5 +17,6 @@ namespace Service.Abstracts
         IStudentExamSrevice studentExamSrevice { get; }
         ISubjectLevelService subjectLevelService { get; }
         ISubjectService subjectService { get; }
+        IStudentResultService studentResultService { get; }
     }
 }

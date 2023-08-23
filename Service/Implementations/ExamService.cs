@@ -22,21 +22,18 @@ namespace Service.Implementations
         public async Task<Exam> AddAsync(Exam exam)
         {
             var Exam =await _unitOfWork.exam.AddAsync(exam);
-            _unitOfWork.Complete();
             return Exam;
         }
 
         public async Task<string> DeleteAsync(Exam exam)
         {
             await _unitOfWork.exam.DeleteAsync(exam);
-            _unitOfWork.Complete();
             return "Success"; 
         }
 
         public async Task<string> EditAsync(Exam exam)
         {
             await _unitOfWork.exam.UpdateAsync(exam);
-            _unitOfWork.Complete();
             return "Success" ;
         }
         public async Task<Exam> GetByIdasync(Guid id)

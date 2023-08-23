@@ -9,10 +9,13 @@ using Infrastructure.Context;
 using Infrastructure.Interfaces;
 using Data.Audit.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Data.Audit;
 
 namespace Infrastructure.InfrastructureBases
 {
-    public class GenericRepositoryAsync<T> : IGenericeRepositoryAsync<T> where T : class
+    public class GenericRepositoryAsync<T> : IGenericeRepositoryAsync<T> where T :class
     {
         #region Vars / Props
 
@@ -36,9 +39,8 @@ namespace Infrastructure.InfrastructureBases
         #region Actions
         public virtual async Task<T> GetByIdAsync(int id)
         {
-
             return await _dbContext.Set<T>().FindAsync(id);
-        }
+        }      
         public virtual async Task<List<T>> GetAll()
         {
 
@@ -61,14 +63,14 @@ namespace Infrastructure.InfrastructureBases
         public virtual async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
-            //await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
             return entity;
         }
         public virtual async Task<List<T>> AddListAsync(List<T> entity)
         {
             await _dbContext.Set<T>().AddRangeAsync(entity);
-            //await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
             return entity;
         }
@@ -76,14 +78,14 @@ namespace Infrastructure.InfrastructureBases
         public virtual async Task UpdateAsync(T entity)
         {
             _dbContext.Set<T>().Update(entity);
-            //await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
         }
 
         public virtual async Task DeleteAsync(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
-            //await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
         public virtual async Task DeleteRangeAsync(ICollection<T> entities)
         {
@@ -103,7 +105,6 @@ namespace Infrastructure.InfrastructureBases
 
         public IDbContextTransaction BeginTransaction()
         {
-
 
             return _dbContext.Database.BeginTransaction();
         }

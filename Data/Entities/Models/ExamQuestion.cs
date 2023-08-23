@@ -14,6 +14,5 @@ namespace Data.Entities.Models
         public StudentExam StudentExam { get; set; }
         public Guid QuestionId { get; set; }
         public Question Question {get; set; }
-        public HashSet<StudentExamResult> StudentExamResults { get; set; }
     }
 }

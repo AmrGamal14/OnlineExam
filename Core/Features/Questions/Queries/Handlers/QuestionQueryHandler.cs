@@ -64,21 +64,10 @@ namespace Core.Features.Questions.Queries.Handlers
             var QuestionListMapper = _mapper.Map<List<GetQuestionRandomResponse>>(QuestionList);
             QuestionListMapper.ForEach(a => a.TitleExam=exam.Title);
             QuestionListMapper.ForEach(a => a.Duration=exam.Duration);
-            using var scope = _serviceProvider.CreateScope();
-            var auditService = scope.ServiceProvider.GetService<IAuditService>();
-            StudentExamForm FormattingSL = new();
-            FormattingSL.ExamId=request.ExamId;
-            FormattingSL.ExamDate=DateTime.UtcNow;
-            FormattingSL.UserId=  Guid.Parse(auditService.UserId);
-            var StudentExamMapper = _mapper.Map<StudentExam>(FormattingSL);
-            var Result = await _unitOfWorkService.studentExamSrevice.AddAsync(StudentExamMapper);
-            var ExamQuestionMap = _mapper.Map<List<ExamQuestion>>(QuestionList);
-            ExamQuestionMap.ForEach(qId => qId.StudentExamId = Result.Id);
-            var result = await _unitOfWorkService.examQuestionService.AddListAsync(ExamQuestionMap);
-
 
             return success(QuestionListMapper);
         }
         #endregion
+            
     }
 }

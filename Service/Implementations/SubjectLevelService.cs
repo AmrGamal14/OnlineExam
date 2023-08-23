@@ -22,7 +22,6 @@ namespace Service.Implementations
         public async Task<string> AddAsync(SubjectLevel subjectLevel)
         {
             await _unitOfWork.subjectLevel.AddAsync(subjectLevel);
-            _unitOfWork.Complete();
             return "Success";
         }
         public async Task<SubjectLevel> GetSubjectLevelByLevelIdasync(Guid id)

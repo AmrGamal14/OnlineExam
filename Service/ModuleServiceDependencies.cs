@@ -22,6 +22,7 @@ namespace Service
             .AddTransient<IExamService, ExamService>()
             .AddTransient<IStudentExamSrevice, StudentExamSrevice>()
             .AddTransient<IExamQuestionService, ExamQuestionService>()
+            .AddTransient<IStudentResultService, StudentResultService>()
             .AddTransient<IUnitOfWorkService, UnitOfWorkService>()
             .AddTransient<IAnswerService, AnswerService>();
             return services;

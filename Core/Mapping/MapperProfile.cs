@@ -69,12 +69,18 @@ namespace Core.Mapping
 
             //StudentExamMapper
             CreateMap<StudentExamForm, StudentExam>();
+            CreateMap<ScoreExam, StudentExam>();
 
             //ExamQuestionMapper
-            CreateMap<Question, ExamQuestion>()
-                .ForMember(dest => dest.QuestionId, opt => opt.MapFrom(src => src.Id));
             CreateMap<StudentExam, ExamQuestion>();
+            CreateMap<CorrectList, ExamQuestion>()
+               .ForMember(dest => dest.QuestionId, opt => opt.MapFrom(src => src.QuestionId));
+            //StudentExamResultMapper
+            CreateMap<AnswerList, StudentExamResult>()
+                .ForMember(dest => dest.AnswerId, opt => opt.MapFrom(src => src.Id));
+                //.ForMember(dest => dest.IsCorrect, opt => opt.MapFrom(src => src.IsCorrect))
 
+            CreateMap<StudentExam,StudentExamResult>();
         }
        
     }

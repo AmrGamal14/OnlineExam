@@ -17,11 +17,6 @@ namespace Infrastructure.Configuration
                 .WithMany(e => e.StudentExamResults)
                 .HasForeignKey(s => s.StudentExamId)
                 .OnDelete(DeleteBehavior.Restrict);  
-
-            builder.HasOne(sl => sl.ExamQuestion)
-               .WithMany(e => e.StudentExamResults)
-               .HasForeignKey(s => s.ExamQuestionId)
-               .OnDelete(DeleteBehavior.Restrict);
             
             builder.HasOne(sl => sl.Answer)
                .WithMany(e => e.StudentExamResults)

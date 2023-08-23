@@ -28,6 +28,9 @@ namespace Service.Implementations
         public ISubjectLevelService subjectLevelService { get; private set; }
 
         public ISubjectService subjectService { get; private set; }
+
+        public IStudentResultService studentResultService {get; private set; }
+
         public UnitOfWorkService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -39,6 +42,7 @@ namespace Service.Implementations
             skillService=new SkillService(_unitOfWork);
             studentExamSrevice=new StudentExamSrevice(_unitOfWork);
             subjectLevelService=new SubjectLevelService(_unitOfWork);
+            studentResultService=new StudentResultService(_unitOfWork);
             subjectService =new SubjectService(_unitOfWork);
 
         }
