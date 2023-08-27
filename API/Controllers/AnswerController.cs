@@ -19,7 +19,7 @@ namespace API.Controllers
         {
             _mediator=mediator;
         }
-        [HttpGet("/ShowAllAnswer")]
+        [HttpGet("/GetQuestionAnswers")]
         public async Task<IActionResult> GetAnswerListByQuestionID([FromQuery] GetAnswerListQuery request)
         {
             var response = await _mediator.Send(request);
@@ -31,7 +31,7 @@ namespace API.Controllers
             var response = await _mediator.Send(command);
             return Ok(response);
         } 
-        [HttpPost("/CorrectAnswer")]
+        [HttpPost("/AnswersCorrection")]
         public async Task<IActionResult> Correct([FromBody] CorrectionAnswerCommand command)
         {
             var response = await _mediator.Send(command);

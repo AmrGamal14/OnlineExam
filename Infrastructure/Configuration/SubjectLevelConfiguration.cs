@@ -13,9 +13,6 @@ namespace Infrastructure.Configuration
     {
         public override void CustomConfig(EntityTypeBuilder<SubjectLevel> builder)
         {
-            //builder.Ignore(i => i.Id);
-
-            //builder.HasKey(sl => new { sl.LevelId, sl.SubjectId });
 
             builder.HasOne(s => s.Subject)
                 .WithMany(sl => sl.SubjectLevels)

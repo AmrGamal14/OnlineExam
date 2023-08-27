@@ -29,6 +29,7 @@ namespace Core.Features.Exams.Commands.Validations
                 .NotEmpty().WithMessage("Title Must not Be Empty")
                 .NotNull().WithMessage("Title Must not Be Null");
             RuleFor(x => x.QuestionCount)
+                .GreaterThanOrEqualTo(1).WithMessage("QuestionCount Must not Be zero or less")
                 .NotNull().WithMessage("QuestionCount Must not Be Null");
             RuleFor(x => x.Duration)
                 .NotNull().WithMessage("Duration Must not Be Null");

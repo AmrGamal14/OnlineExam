@@ -23,9 +23,16 @@ namespace Infrastructure.Repositories
 
         }
 
-        public async Task<StudentExam> GetStudentExamAscync(Guid userId, Guid id)
+        public async Task <List<StudentExam>> GetStudentExamByExamIdAscync(Guid id)
         {
-            var StudentExam = await _studentExams.Where(cb => cb.UserId == userId && cb.ExamId==id).FirstOrDefaultAsync();
+            var StudentExam = await _studentExams.Where(cb =>cb.ExamId==id).Include(u=>u.User).ToListAsync();
+               
+            return StudentExam;
+        }
+
+        public async Task<List<StudentExam>> GetStudentExambyUserId(Guid userId)
+        {
+            var StudentExam = await _studentExams.Where(cb => cb.UserId == userId).Include(e=>e.Exam).ToListAsync();
             return StudentExam;
         }
         #endregion

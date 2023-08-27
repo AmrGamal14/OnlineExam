@@ -19,14 +19,21 @@ namespace API.Controllers
         {
             _mediator=mediator;
         }
-        [HttpGet("/ShowAllQuestion")]
+        [HttpGet("/ShowAllQuestions")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetQuestionList([FromQuery] GetQuestionListQuery request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
-        [HttpGet("/ExamQuestion")]
+        [HttpGet("/ExamQuestions")]
         public async Task<IActionResult> GetQuestionRandom([FromQuery] GetQuestionRandom request)
+        {
+            var response = await _mediator.Send(request);
+            return Ok(response);
+        }
+        [HttpGet("/GetQuestionById")]
+        public async Task<IActionResult> GetQuestionById([FromQuery] GetQuestionAndAnswerById request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);

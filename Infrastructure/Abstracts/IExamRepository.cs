@@ -10,6 +10,7 @@ namespace Infrastructure.Abstracts
 {
     public interface IExamRepository : IGenericeRepositoryAsync<Exam>
     {
- 
+        public Task<List<Exam>> GetExamsListAsync(string userId,Guid id);
+       
     }
 }

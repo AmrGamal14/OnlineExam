@@ -15,8 +15,8 @@ namespace Data.Entities.Models
         public DateTime ExamDate { get; set; }
         public Guid ExamId { get; set; }
         public Exam Exam { get; set; }
-        public HashSet<StudentExamResult> StudentExamResults { get; set; }
-        public HashSet<ExamQuestion> ExamQuestions { get; set; }
+        public List<StudentExamResult> StudentExamResults { get; set; }
+        public List<ExamQuestion> ExamQuestions { get; set; }
         public Guid UserId { get; set; }
         public User User { get; set; }
 

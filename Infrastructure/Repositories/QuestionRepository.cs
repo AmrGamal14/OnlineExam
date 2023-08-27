@@ -11,6 +11,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories
 {
@@ -27,6 +28,30 @@ namespace Infrastructure.Repositories
             _questions=dBContext.Set<Question>();
             _exams=dBContext.Set<Exam>();
             _answers=dBContext.Set<Answers>();
+
+        }
+
+        public async Task<List<Question>> GetByMultipleIdsAsync(List<Guid> Ids, List<Guid> id, params Expression<Func<Question, object>>[] includeProperties)
+        {
+            try
+            {
+                var query = _questions.AsQueryable();
+                foreach (var includeProperty in includeProperties)
+                    query = query.Include(includeProperty);
+
+                var result = await query.Where(x => Ids.Contains(x.Id)).Include(a=>a.Answers.Where(x => id.Contains(x.Id))).ToListAsync();
+                return result;
+            }
+            catch (Exception e)
+            {
+                return new List<Question>();
+            }
+        }
+
+        public async Task<Question> GetQuestionAndAnswerById(Guid id)
+        {
+            var Question = await _questions.Where(cb => cb.Id==id).Include(a => a.Answers).Include(s=>s.Skill).FirstOrDefaultAsync();
+            return Question;
 
         }
 
@@ -49,7 +74,6 @@ namespace Infrastructure.Repositories
 
             if (availableQuestions.Count < exam.QuestionCount)
             {
-                // Handle case where there aren't enough questions available
                 return availableQuestions.ToList();
             }
             Random rand = new Random();

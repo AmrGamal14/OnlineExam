@@ -13,7 +13,7 @@ namespace Core.Features.Exams.Commands.Models
         public Guid Id { get; set; }
         public string Title { get; set; }
         public int QuestionCount { get; set; }
-        public TimeSpan Duration { get; set; }
+        public int Duration { get; set; }
 
     }
 }

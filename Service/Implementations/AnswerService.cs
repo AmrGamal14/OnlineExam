@@ -25,6 +25,11 @@ namespace Service.Implementations
            await _unitOfWork.answer.AddListAsync(answers);
             return "Success";
         }
+        public async Task<string> UpdateListAsync(List<Answers> answers)
+        {
+            await _unitOfWork.answer.UpdateListAsync(answers);
+            return "Success";
+        }
         public async Task<string> AddAsync(Answers answers)
         {
             await _unitOfWork.answer.AddAsync(answers);

@@ -23,9 +23,15 @@ namespace Service.Implementations
             return result ;
         }
 
-        public async Task<StudentExam> GetStudentExamAscync(Guid userId, Guid id)
+        public async Task<List<StudentExam>> GetStudentExamByExamIdAscync( Guid id)
         {
-            var result = await _unitOfWork.studentExam.GetStudentExamAscync(userId,id);
+            var result = await _unitOfWork.studentExam.GetStudentExamByExamIdAscync(id);
+            return result;
+        }
+
+        public async Task<List<StudentExam>> GetStudentExambyUserId(Guid userId)
+        {
+            var result = await _unitOfWork.studentExam.GetStudentExambyUserId(userId);
             return result;
         }
 

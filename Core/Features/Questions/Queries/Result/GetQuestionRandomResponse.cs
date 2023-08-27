@@ -9,7 +9,7 @@ namespace Core.Features.Questions.Queries.Result
     public class GetQuestionRandomResponse
     {
         public string TitleExam { get; set; }
-        public TimeSpan Duration { get; set; }
+        public int Duration { get; set; }
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

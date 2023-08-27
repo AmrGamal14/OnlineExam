@@ -9,9 +9,11 @@ namespace Service.Abstracts
 {
     public interface IExamService
     {
+        public Task<List<Exam>> GetExamsListAsync(string userId,Guid id);
         public Task<Exam> GetByIdasync(Guid id);
         public Task<Exam> AddAsync(Exam exam);
         public Task<string> EditAsync(Exam exam);
         public Task<string> DeleteAsync(Exam exam);
+      
     }
 }

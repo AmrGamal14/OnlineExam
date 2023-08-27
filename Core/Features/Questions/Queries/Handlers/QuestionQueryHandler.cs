@@ -25,6 +25,7 @@ namespace Core.Features.Questions.Queries.Handlers
 {
     public class QuestionQueryHandler : ResponseHandler, IRequestHandler<GetQuestionListQuery, Response<List<GetQuestionListResponse>>>
                                                           , IRequestHandler<GetQuestionRandom, Response<List<GetQuestionRandomResponse>>>
+                                                          , IRequestHandler<GetQuestionAndAnswerById, Response<GetByIdResponse>>
     {
         #region Fields
 
@@ -67,7 +68,15 @@ namespace Core.Features.Questions.Queries.Handlers
 
             return success(QuestionListMapper);
         }
+
+        public async Task<Response<GetByIdResponse>> Handle(GetQuestionAndAnswerById request, CancellationToken cancellationToken)
+        {
+            var question = await _unitOfWorkService.questionService.GetQuestionandAnswerById(request.Id);
+            var questionmapper = _mapper.Map<GetByIdResponse>(question);
+            return success(questionmapper);
+
+        }
         #endregion
-            
+
     }
 }

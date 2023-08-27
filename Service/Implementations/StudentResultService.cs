@@ -4,6 +4,7 @@ using Service.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +27,12 @@ namespace Service.Implementations
         {
             var result = await _unitOfWork.studentResult.AddListAsync(studentExamResults);
             return "Success";
+        }
+
+        public async Task<List<StudentExamResult>> GetByMultipleIdsAsync(List<Guid> Ids, params Expression<Func<StudentExamResult, object>>[] includeProperties)
+        {
+            var result = await _unitOfWork.studentResult.GetByMultipleIdsAsync(Ids);
+            return result;
         }
     }
 }

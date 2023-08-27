@@ -35,7 +35,7 @@ namespace Core.Features.Questions.Commands.Validations
                 .NotNull().WithMessage("SkillName Must not Be Null");
             RuleFor(x => x.LevelId)
                 .NotEmpty().WithMessage("LevelId Must not Be Empty")
-                .NotNull().WithMessage("LevelId Must not Be Null");
+                .NotNull().WithMessage("LevelId Must not Be Null"); 
 
                 
 

@@ -14,7 +14,6 @@ namespace Infrastructure.ValueGenerators
 
         public override Guid Next(EntityEntry entry)
         {
-            //return NUlid.Ulid.NewUlid().ToString().ToLower();
             return Guid.NewGuid();
         }
     }

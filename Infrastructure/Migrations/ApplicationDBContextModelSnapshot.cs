@@ -213,8 +213,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("Duration")
-                        .HasColumnType("time");
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");

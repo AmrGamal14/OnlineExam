@@ -58,7 +58,7 @@ namespace Core.MiddleWare
 
                     case DbUpdateException e:
                         // can't update error
-                        responseModel.Message = "errorrr";
+                        responseModel.Message =error.Message;
                         responseModel.StatusCode = HttpStatusCode.BadRequest;
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;

@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Service.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -42,7 +43,7 @@ namespace Service.Implementations
         #region Handle Functions 
         public async Task<JwtAuthResult> GetJWTToken(User user)
         {
-            var (jwtToken, accessToken)=GenerateJwtToken(user);
+            var (jwtToken, accessToken)=await GenerateJwtToken(user);
             var refreshToken = new RefreshToken
             {
                 ExpireAt= DateTime.Now.AddDays(_jwtSettings.RefreshTokenExpireDate),
@@ -69,18 +70,24 @@ namespace Service.Implementations
             response.Roles = (List<string>)await _userManager.GetRolesAsync(user);
             return response;
         }
-        private (JwtSecurityToken, string) GenerateJwtToken(User user)
+        private async Task<(JwtSecurityToken, string)> GenerateJwtToken(User user)
 
         {
+            var Roles = await _userManager.GetRolesAsync(user);
             var cliams = new List<Claim>()
             {
                 new Claim (nameof(UserClaimModel.UserName),user.UserName),
                 new Claim (nameof(UserClaimModel.Email),user.Email),
                 new Claim (nameof(UserClaimModel.PhoneNumber),user.PhoneNumber),
                 new Claim (nameof(UserClaimModel.Id),user.Id.ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), 
             };
-            var jwtToken = new JwtSecurityToken(_jwtSettings.Issuer,
+            foreach (var role in Roles)
+            {
+                cliams.Add(new Claim(ClaimTypes.Role,role));
+            }
+            
+                var jwtToken = new JwtSecurityToken(_jwtSettings.Issuer,
                                              _jwtSettings.Audience,
                                              cliams,
                                             expires: DateTime.UtcNow.AddMinutes(_jwtSettings.AccessTokenExpireDate),
@@ -130,7 +137,7 @@ namespace Service.Implementations
             {
                 throw new SecurityTokenException("User Is Not Found");
             }
-            var (jwtSecurityToken, newToken) = GenerateJwtToken(user);
+            var (jwtSecurityToken, newToken) = await GenerateJwtToken(user);
             userRefreshToken.Token=newToken;
             await _refreshTokenRepository.UpdateAsync(userRefreshToken);
             var response = new JwtAuthResult();

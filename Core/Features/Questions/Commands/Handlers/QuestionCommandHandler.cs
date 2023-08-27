@@ -54,7 +54,7 @@ namespace Core.Features.Questions.Commands.Handlers
             answerMap.ForEach(qId => qId.QuestionId = Result.Id);
             var result= await _unitOfWorkService.answerService.AddListAsync(answerMap);
 
-            return success("k");
+            return success("Add Successfully");
 
 
 
@@ -66,6 +66,9 @@ namespace Core.Features.Questions.Commands.Handlers
             var OldQuestion = await _unitOfWorkService.questionService.GetQuesyionByIdasync(request.Id);
             if (OldQuestion == null)
                 return NotFound<string>("NotFouund");
+            var answerlist = request.Ans.FirstOrDefault(q => q.IsCorrect==true);
+            if (answerlist==null)
+                return BadRequest<string>("Answers Must Includ answer equal true");
             var skill = await _unitOfWorkService.skillService.GetByEnum(request.SkillName);
             var Questionmapper = _mapper.Map<Question>(request);
             Questionmapper.SkillId = skill.Id;
@@ -73,8 +76,16 @@ namespace Core.Features.Questions.Commands.Handlers
             Questionmapper.AddEntityAudit();
             Questionmapper.UpdateEntityAudit();
             var result = await _unitOfWorkService.questionService.EditAsync(Questionmapper);
-            if (result=="Success") return success("Edit Successfully");
+            //if (Result=="Success") return success("Edit Successfully");
+            //else return BadRequest<string>();
+            //var OldAnswerList = await _unitOfWorkService.answerService.GetByMultipleIdsAsync(request.Ans.Select(a => a.Id).ToList());
+            var answerMap = _mapper.Map<List<Answers>>(request.Ans);
+            answerMap.ForEach(qId => qId.QuestionId = request.Id);
+            var Result = await _unitOfWorkService.answerService.UpdateListAsync(answerMap);
+            //return success("Edit Successfully");
+            if (Result=="Success") return success("Edit Successfully");
             else return BadRequest<string>();
+
         }
 
         public async Task<Response<string>> Handle(DeleteQuestionCommand request, CancellationToken cancellationToken)

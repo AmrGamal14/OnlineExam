@@ -36,11 +36,19 @@ namespace Service.Implementations
             await _unitOfWork.exam.UpdateAsync(exam);
             return "Success" ;
         }
+
+
         public async Task<Exam> GetByIdasync(Guid id)
         {
             var exam = _unitOfWork.exam.GetTableNoTracking().Where(x => x.Id==id).FirstOrDefault();
             return exam;
 
+        }
+
+        public Task<List<Exam>> GetExamsListAsync(string userId , Guid id )
+        {
+            var exam = _unitOfWork.exam.GetExamsListAsync(userId,id);
+            return exam;
         }
     }
 }

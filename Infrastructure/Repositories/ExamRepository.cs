@@ -24,5 +24,10 @@ namespace Infrastructure.Repositories
         }
 
        
+
+        public async Task<List<Exam>> GetExamsListAsync(string userId,Guid id)
+        {
+            return await _exams.Where(cb => cb.CreatedBy == userId&&cb.SubjectLevelId==id).ToListAsync();
+        }
     }
 }

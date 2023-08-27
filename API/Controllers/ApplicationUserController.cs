@@ -26,7 +26,7 @@ namespace API.Controllers
             var response = await _mediator.Send(query);
             return Ok(response);
         }
-        [HttpPost("/Register")]
+        [HttpPost("/Registeration")]
         public async Task<IActionResult> Create([FromBody] AddUserCommand command)
         {
             var response = await _mediator.Send(command);

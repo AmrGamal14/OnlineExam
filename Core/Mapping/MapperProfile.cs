@@ -2,10 +2,12 @@
 using Core.Features.Answer.Command.Models;
 using Core.Features.Answer.Queries.Result;
 using Core.Features.Exams.Commands.Models;
+using Core.Features.Exams.Queries.Result;
 using Core.Features.Levels.Commands.Models;
 using Core.Features.Levels.Queries.Results;
 using Core.Features.Questions.Commands.Models;
 using Core.Features.Questions.Queries.Result;
+using Core.Features.StudentHistory.Queries.Results;
 using Core.Features.Subjects.Commands.Models;
 using Core.Features.Subjects.Queries.Result;
 using Core.Features.UserCQRS.Command.Models;
@@ -53,12 +55,20 @@ namespace Core.Mapping
             CreateMap<Question, GetQuestionRandomResponse>()
                 .ForMember(dest => dest.answerlist, opt => opt.MapFrom(src => src.Answers));
             CreateMap<Exam, GetQuestionRandomResponse>();
+            CreateMap<Answers, answerslist>();
+            CreateMap<Skill, GetByIdResponse>();
+            CreateMap<Question, GetByIdResponse>()
+                .ForMember(dest=>dest.Answer, opt=>opt.MapFrom(src=>src.Answers))
+                .ForMember(dest=>dest.SkillLevel, opt=>opt.MapFrom(src=>src.Skill.Name));
+
+
 
             //SkillMApper
             CreateMap<AddQuestionAndAnswerCommand, Skill>();
 
             //AnswerMapper
             CreateMap<AnswersLists, Answers>().ReverseMap();
+            CreateMap<answer, Answers>().ReverseMap();
             CreateMap<AddAnswerCommand, Answers>().ReverseMap();
             CreateMap<EditAnswerCommand, Answers>().ReverseMap();
             CreateMap<Answers, GetAnswerListResponse>().ReverseMap();
@@ -66,10 +76,26 @@ namespace Core.Mapping
             //ExamMapper
             CreateMap<AddExamCommand, Exam>();
             CreateMap<EditExamCommand, Exam>();
-
+            CreateMap<Exam, GetExamListResponse>();
+            CreateMap<Exam, GetExamResponse>();
             //StudentExamMapper
             CreateMap<StudentExamForm, StudentExam>();
             CreateMap<ScoreExam, StudentExam>();
+            CreateMap<StudentExam, GetStudentHistoryResponse>()
+                .ForMember(dest => dest.QuestionCount, opt => opt.MapFrom(src => src.Exam.QuestionCount))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Exam.Title))
+                .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Exam.Duration));
+               
+            CreateMap<Exam, GetStudentHistoryResponse>(); 
+            CreateMap<StudentExam, GetExamHistoryResponse>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FullName))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
+                .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.User.PhoneNumber))
+                .ForMember(dest => dest.ExamDate, opt => opt.MapFrom(src => src.ExamDate))
+                .ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Score));
+               
+            CreateMap<User, GetExamHistoryResponse>();
+
 
             //ExamQuestionMapper
             CreateMap<StudentExam, ExamQuestion>();

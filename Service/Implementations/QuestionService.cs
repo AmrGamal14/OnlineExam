@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Service.Implementations
 {
@@ -34,6 +35,18 @@ namespace Service.Implementations
         {
             await _unitOfWork.question.UpdateAsync(question);
             return "Success";
+        }
+
+        public async Task<List<Question>> GetByMultipleIdsAsync(List<Guid> Ids, List<Guid> id, params Expression<Func<Question, object>>[] includeProperties)
+        {
+            var Questions = await _unitOfWork.question.GetByMultipleIdsAsync(Ids,id);
+            return Questions;
+        }
+
+        public async Task<Question> GetQuestionandAnswerById(Guid id)
+        {
+            var Questions = await _unitOfWork.question.GetQuestionAndAnswerById(id);
+            return Questions;
         }
 
         public Task<List<Question>> GetQuestionListAsync(string userId, Guid id)

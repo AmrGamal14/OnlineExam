@@ -69,7 +69,9 @@ namespace Core.Features.Exams.Commands.Handlers
             if (OldExam == null)
                 return NotFound<string>("NotFouund");
             var Exammapper = _mapper.Map<Exam>(request);
+            Exammapper.AddEntityAudit();
             Exammapper.SubjectLevelId=OldExam.SubjectLevelId;
+            Exammapper.url=OldExam.url;
             var result = await _unitOfWorkService.examService.EditAsync(Exammapper);
             if (result=="Success") return success("Edit Successfully");
             else return BadRequest<string>();

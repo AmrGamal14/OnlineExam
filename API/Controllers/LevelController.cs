@@ -17,7 +17,7 @@ namespace API.Controllers
         {
             _mediator=mediator;
         }
-        [HttpGet("/ShowAllLevel")]
+        [HttpGet("/GetAllLevels")]
         public async Task<IActionResult> GetLevelListBySubjectID([FromQuery] GetLevelListBySubjectIdQuery request)
         {
             var response = await _mediator.Send(request);
