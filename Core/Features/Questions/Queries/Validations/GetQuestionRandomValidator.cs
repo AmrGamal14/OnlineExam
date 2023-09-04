@@ -1,5 +1,5 @@
-﻿using Core.Features.Questions.Commands.Models;
-using Core.Features.Questions.Queries.Models;
+﻿using Application.Features.Questions.Commands.Models;
+using Application.Features.Questions.Queries.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Questions.Queries.Validations
+namespace Application.Features.Questions.Queries.Validations
 {
     public class GetQuestionRandomValidator : AbstractValidator<GetQuestionRandom>
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Exams.Queries.Result
+namespace Application.Features.Exams.Queries.Result
 {
     public class GetExamResponse
     {

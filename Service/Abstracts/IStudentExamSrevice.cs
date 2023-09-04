@@ -12,6 +12,7 @@ namespace Service.Abstracts
         public Task<StudentExam> AddAsync(StudentExam studentExam);
         public Task<string> UpdateAsync(StudentExam studentExam);
         public Task<List<StudentExam>> GetStudentExamByExamIdAscync( Guid id);
+        public Task<List<StudentExam>> GetStudentQuestionsByExamIdAscync( Guid id);
         public Task<List<StudentExam>> GetStudentExambyUserId(Guid userId);
 
     }

@@ -27,12 +27,19 @@ namespace Infrastructure.Repositories
         {
             var StudentExam = await _studentExams.Where(cb =>cb.ExamId==id).Include(u=>u.User).ToListAsync();
                
-            return StudentExam;
+            return StudentExam; 
         }
 
         public async Task<List<StudentExam>> GetStudentExambyUserId(Guid userId)
         {
-            var StudentExam = await _studentExams.Where(cb => cb.UserId == userId).Include(e=>e.Exam).ToListAsync();
+            var StudentExam = await _studentExams.Where(cb => cb.UserId == userId).Include(e=>e.Exam)./*Include(s=>s.StudentExamResults).ThenInclude(e=>e.Answer).ThenInclude(q=>q.Question)*/ToListAsync();
+            return StudentExam;
+        }
+
+        public async Task<List<StudentExam>> GetStudentQuestionsByExamIdAscync(Guid id, Guid UserId, DateTime ExamDate)
+        {
+            var StudentExam = await _studentExams.Where(cb => cb.ExamId==id&&cb.UserId==UserId&&cb.ExamDate==ExamDate).Include(s=>s.StudentExamResults).ThenInclude(a=>a.Answer).ThenInclude(q => q.Question).ToListAsync();
+
             return StudentExam;
         }
         #endregion

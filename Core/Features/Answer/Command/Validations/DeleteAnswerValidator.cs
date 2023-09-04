@@ -1,4 +1,4 @@
-﻿using Core.Features.Answer.Command.Models;
+﻿using Application.Features.Answer.Command.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Answer.Command.Validations
+namespace Application.Features.Answer.Command.Validations
 {
     public class DeleteAnswerValidator : AbstractValidator<DeleteAnswerCommand>
 

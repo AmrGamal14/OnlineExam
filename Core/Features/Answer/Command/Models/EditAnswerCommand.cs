@@ -1,12 +1,7 @@
-﻿using Core.Bases;
+﻿using Application.Bases;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Core.Features.Answer.Command.Models
+namespace Application.Features.Answer.Command.Models
 {
     public class EditAnswerCommand : IRequest<Response<string>>
     {

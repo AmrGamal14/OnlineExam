@@ -1,4 +1,4 @@
-﻿using Core.Bases;
+﻿using Application.Bases;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Questions.Commands.Models
+namespace Application.Features.Questions.Commands.Models
 {
     public class DeleteQuestionCommand : IRequest<Response<string>>
     {

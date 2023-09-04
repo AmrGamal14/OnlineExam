@@ -1,11 +1,11 @@
-﻿using Core.Behaviors;
+﻿using Application.Behaviors;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Core
+namespace Application
 {
     public static class ModuleCoreDependencies
     {

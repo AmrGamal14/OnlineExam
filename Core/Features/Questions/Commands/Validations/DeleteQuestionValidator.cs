@@ -1,5 +1,4 @@
-﻿using Core.Features.Questions.Commands.Models;
-using Core.Features.Subjects.Commands.Models;
+﻿using Application.Features.Questions.Commands.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

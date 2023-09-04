@@ -8,9 +8,9 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Core.Bases;
+using Application.Bases;
 
-namespace Core.MiddleWare
+namespace Application.MiddleWare
 {
     public class ErrorHandlerMiddleware
     {

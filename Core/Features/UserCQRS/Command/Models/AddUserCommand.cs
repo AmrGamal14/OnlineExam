@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Bases;
+using Application.Bases;
 using Data.Enums;
 
-namespace Core.Features.UserCQRS.Command.Models
+namespace Application.Features.UserCQRS.Command.Models
 {
     public class AddUserCommand:IRequest<Response<string>>
     {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Core.Features.Authorization.Commands.Models;
+using Application.Features.Authorization.Commands.Models;
 
 namespace API.Controllers
 {

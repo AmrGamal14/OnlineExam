@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Bases
+namespace Application.Bases
 {
     public class Response<T>
     {

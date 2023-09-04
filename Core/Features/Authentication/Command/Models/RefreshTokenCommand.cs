@@ -1,4 +1,4 @@
-﻿using Core.Bases;
+﻿using Application.Bases;
 using Data.Entities.Helper;
 using MediatR;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Authentication.Command.Models
+namespace Application.Features.Authentication.Command.Models
 {
     public class RefreshTokenCommand : IRequest<Response<JwtAuthResult>>
     {

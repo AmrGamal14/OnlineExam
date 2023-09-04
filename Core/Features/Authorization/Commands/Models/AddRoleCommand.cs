@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Bases;
+using Application.Bases;
 
-namespace Core.Features.Authorization.Commands.Models
+namespace Application.Features.Authorization.Commands.Models
 {
     public class AddRoleCommand : IRequest<Response<string>>
     {

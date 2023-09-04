@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using  Core.Features.Authorization.Commands.Models;
+using Application.Features.Authorization.Commands.Models;
 using Service.Abstracts;
+using Infrastructure.Abstracts;
 
-namespace Core.Features.Authorization.Commands.Validators
+namespace Application.Features.Authorization.Commands.Validators
 {
     internal class AddRoleValidators : AbstractValidator<AddRoleCommand>
 

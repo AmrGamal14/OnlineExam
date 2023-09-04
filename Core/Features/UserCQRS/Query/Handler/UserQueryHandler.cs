@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Bases;
-using Core.Features.UserCQRS.Query.Models;
-using Core.Features.UserCQRS.Query.Result;
-using Core.Wrappers;
+using Application.Bases;
+using Application.Features.UserCQRS.Query.Models;
+using Application.Features.UserCQRS.Query.Result;
+using Application.Wrappers;
 using Data.Entities.Identity;
 
-namespace Core.Features.UserCQRS.Query.Handler
+namespace Application.Features.UserCQRS.Query.Handler
 {
     public class UserQueryHandler : ResponseHandler ,
                  IRequestHandler<GetUserListQuery,PaginatedResult<GetUserListResult>>

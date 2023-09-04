@@ -1,4 +1,4 @@
-﻿using Core.Features.Levels.Queries.Models;
+﻿using Application.Features.Levels.Queries.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Levels.Queries.Validations
+namespace Application.Features.Levels.Queries.Validations
 {
     public class GetLevelValidator : AbstractValidator<GetLevelListBySubjectIdQuery>
     {

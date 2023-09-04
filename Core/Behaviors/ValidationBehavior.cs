@@ -1,4 +1,4 @@
-﻿using Core.Resources;
+﻿using Application.Resources;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Localization;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Behaviors
+namespace Application.Behaviors
 {
     public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
        where TRequest : IRequest<TResponse>

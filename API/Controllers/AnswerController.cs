@@ -1,7 +1,8 @@
-﻿using Core.Features.Answer.Command.Models;
-using Core.Features.Answer.Queries.Models;
-using Core.Features.Levels.Queries.Models;
-using Core.Features.Questions.Commands.Models;
+﻿using API.ControllersBase;
+using Application.Features.Answer.Command.Models;
+using Application.Features.Answer.Queries.Models;
+using Application.Features.Levels.Queries.Models;
+using Application.Features.Questions.Commands.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,43 +13,39 @@ namespace API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class AnswerController : ControllerBase
+    public class AnswerController : AppControllerBase
     {
-        private readonly IMediator _mediator;
-        public AnswerController(IMediator mediator)
-        {
-            _mediator=mediator;
-        }
+      
         [HttpGet("/GetQuestionAnswers")]
         public async Task<IActionResult> GetAnswerListByQuestionID([FromQuery] GetAnswerListQuery request)
         {
             var response = await _mediator.Send(request);
-            return Ok(response);
+            return NewResult(response);
         }
         [HttpPost("/AddAnswer")]
         public async Task<IActionResult> Create([FromBody] AddAnswerCommand command)
         {
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return NewResult(response);
         } 
         [HttpPost("/AnswersCorrection")]
         public async Task<IActionResult> Correct([FromBody] CorrectionAnswerCommand command)
         {
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return NewResult(response);
         }
         [HttpPut("/EditAnswer")]
         public async Task<IActionResult> Edit([FromBody] EditAnswerCommand command)
         {
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return NewResult(response);
         }
 
         [HttpDelete("/DeleteAnswer")]
         public async Task<IActionResult> Delete([FromQuery] Guid id)
         {
             var response = await _mediator.Send(new DeleteAnswerCommand(id));
-            return Ok(response);
+            return NewResult(response);
         }
     }
 }

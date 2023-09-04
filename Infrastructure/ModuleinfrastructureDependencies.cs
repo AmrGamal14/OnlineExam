@@ -11,6 +11,8 @@ namespace Infrastructure
         public static IServiceCollection AddinfrastructureDependencies(this IServiceCollection services)
         {
             services
+                .AddTransient<IAuthenticationService, AuthenticationService>()
+                .AddTransient<IAuthorizationService, AuthorizationService>()
                 .AddScoped<IAuditService, AuditService>()
                  .AddTransient<ILevelRepository, LevelRepository>()
                  .AddTransient(typeof(IGenericeRepositoryAsync<>), typeof(GenericRepositoryAsync<>))

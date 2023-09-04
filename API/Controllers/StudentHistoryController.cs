@@ -1,6 +1,7 @@
-﻿using Core.Features.Exams.Queries.Models;
-using Core.Features.StudentHistory.Queries.Models;
-using Core.Features.StudentHistory.Queries.Results;
+﻿using API.ControllersBase;
+using Application.Features.Exams.Queries.Models;
+using Application.Features.StudentHistory.Queries.Models;
+using Application.Features.StudentHistory.Queries.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,26 +13,27 @@ namespace API.Controllers
     [ApiController]
     [Authorize]
 
-    public class StudentHistoryController : ControllerBase
+    public class HistoryController : AppControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public StudentHistoryController(IMediator mediator)
-        {
-            _mediator=mediator;
-        }
+       
         [HttpGet("/StudentHistory")]
         public async Task<IActionResult> GetExamList()
         {
             var response = await _mediator.Send(new GetStudentHistory());
-            return Ok(response);
+            return NewResult(response);
         }
       
         [HttpGet("/ExamHistory")]
         public async Task<IActionResult> GetExamHistory([FromQuery] GetExamHistory command)
         {
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return NewResult(response);
+        }
+        [HttpGet("/StudentQuestionsHistory")]
+        public async Task<IActionResult> GetStudentQuestionsHistory([FromQuery] GetStudentQuestionHistory command)
+        {
+            var response = await _mediator.Send(command);
+            return NewResult(response);
         }
     
     }

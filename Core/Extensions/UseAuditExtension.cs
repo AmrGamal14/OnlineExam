@@ -3,7 +3,7 @@ using Infrastructure.InfrastructureBases;
 using Infrastructure.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.Extensions
+namespace Application.Extensions
 {
     public static class UseAuditExtension
     {

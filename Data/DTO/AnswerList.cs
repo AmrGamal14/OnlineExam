@@ -8,7 +8,7 @@ namespace Data.DTO
 {
     public class AnswerList
     {
-        public Guid Id { get; set; }
+        public Guid AnswerId { get; set; }
         public bool IsCorrect { get; set; }
     }
 }

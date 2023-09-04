@@ -1,6 +1,6 @@
-using Core;
-using Core.Extensions;
-using Core.MiddleWare;
+using Application;
+using Application.Extensions;
+using Application.MiddleWare;
 using Data.Entities.Identity;
 using Data.Entities.Models;
 using Infrastructure;
@@ -39,7 +39,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(option =>
 
 #region Dependency injections
 builder.Services.AddinfrastructureDependencies()
-                .AddServiceDependencies()
+                //.AddServiceDependencies()
                 .AddCoreDependencies()
                 .AddServiceRegisteration(builder.Configuration);
 #endregion

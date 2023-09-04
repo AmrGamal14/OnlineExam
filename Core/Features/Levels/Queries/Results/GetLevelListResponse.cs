@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Levels.Queries.Results
+namespace Application.Features.Levels.Queries.Results
 {
     public class GetLevelListResponse
     {

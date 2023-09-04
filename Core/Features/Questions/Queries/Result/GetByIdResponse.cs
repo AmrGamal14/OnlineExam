@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Questions.Queries.Result
+namespace Application.Features.Questions.Queries.Result
 {
     public class GetByIdResponse
     {

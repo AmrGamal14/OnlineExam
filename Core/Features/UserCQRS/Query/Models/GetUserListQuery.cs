@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Features.UserCQRS.Query.Result;
-using Core.Wrappers;
+using Application.Features.UserCQRS.Query.Result;
+using Application.Wrappers;
 
-namespace Core.Features.UserCQRS.Query.Models
+namespace Application.Features.UserCQRS.Query.Models
 {
     public class GetUserListQuery : IRequest<PaginatedResult<GetUserListResult>>
     {

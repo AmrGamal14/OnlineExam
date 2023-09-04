@@ -1,4 +1,4 @@
-﻿using Core.Features.Authentication.Command.Models;
+﻿using Application.Features.Authentication.Command.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Authentication.Command.Validations
+namespace Application.Features.Authentication.Command.Validations
 {
     public class SignInValidator : AbstractValidator<SignInCommand>
 

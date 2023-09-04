@@ -1,4 +1,4 @@
-﻿using Core.Bases;
+﻿using Application.Bases;
 using Data.Enums;
 using MediatR;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Questions.Commands.Models
+namespace Application.Features.Questions.Commands.Models
 {
     public class EditQuestionCommand : IRequest<Response<string>>
     {

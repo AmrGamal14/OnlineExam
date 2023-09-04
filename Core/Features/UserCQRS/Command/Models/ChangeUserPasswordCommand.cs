@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Bases;
+using Application.Bases;
 
-namespace Core.Features.UserCQRS.Command.Models
+namespace Application.Features.UserCQRS.Command.Models
 {
     public class ChangeUserPasswordCommand : IRequest<Response<string>>
     {

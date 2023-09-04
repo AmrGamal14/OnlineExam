@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Subjects.Queries.Result
+namespace Application.Features.Subjects.Queries.Result
 {
     public class GetSubjectListResponse
     {

@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Bases;
-using Core.Features.UserCQRS.Command.Models;
+using Application.Bases;
+using Application.Features.UserCQRS.Command.Models;
 using Data.Entities.Identity;
 using Data.Enums;
-using Core.Resources;
+using Application.Resources;
 using Microsoft.Extensions.Localization;
 
-namespace Core.Features.UserCQRS.Command.Handlers
+namespace Application.Features.UserCQRS.Command.Handlers
 {
     public class UserCommandHandler : ResponseHandler, IRequestHandler<AddUserCommand, Response<string>>
                                                      , IRequestHandler<UpdateUserCommand, Response<string>>
@@ -65,7 +65,7 @@ namespace Core.Features.UserCQRS.Command.Handlers
        
             //Create 
             //Success
-            return Created("");
+            return Created("Successfully");
         }
 
         public async Task<Response<string>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
@@ -74,8 +74,8 @@ namespace Core.Features.UserCQRS.Command.Handlers
             if (oldUser == null) return NotFound<string>();
             var newUser = _mapper.Map(request, oldUser);
             var result = await _userManager.UpdateAsync(newUser);
-            if (!result.Succeeded) return BadRequest<string>();
-            return success("");
+            if (!result.Succeeded) return BadRequest<string>("Edit Not Successfully");
+            return success("Edit Successfully");
 
 
 
@@ -86,18 +86,18 @@ namespace Core.Features.UserCQRS.Command.Handlers
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
             if (user == null) return NotFound<string>();
             var result = await _userManager.DeleteAsync(user);
-            if (!result.Succeeded) return BadRequest<string>();
-            return success("");
+            if (!result.Succeeded) return BadRequest<string>("Delete Not Successfully");
+            return success("Delete Successfully");
 
         }
 
         public async Task<Response<string>> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
-            if (user == null) return NotFound<string>();
+            if (user == null) return NotFound<string>("NotFound");
             var result = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
-            if (!result.Succeeded) return BadRequest<string>();
-            return success(""); 
+            if (!result.Succeeded) return BadRequest<string>("Not Successfully");
+            return success("Successfully"); 
         }
 
         #endregion

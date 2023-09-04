@@ -79,6 +79,7 @@ namespace Infrastructure.InfrastructureBases
         {
             _dbContext.Set<T>().Update(entity);
             await _dbContext.SaveChangesAsync();
+             
 
         }
         public virtual async Task UpdateListAsync(List<T> entity)

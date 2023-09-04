@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Questions.Queries.Result
+namespace Application.Features.Questions.Queries.Result
 {
     public class GetQuestionRandomResponse
     {
@@ -14,9 +14,7 @@ namespace Core.Features.Questions.Queries.Result
         public string Title { get; set; }
         public string Description { get; set; }
         public string Questions { get; set; }
-      
         public List<answerlist> answerlist { get; set; }
-
     }
     public class answerlist
     {

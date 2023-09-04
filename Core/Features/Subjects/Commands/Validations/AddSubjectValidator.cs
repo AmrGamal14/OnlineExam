@@ -1,5 +1,5 @@
-﻿using Core.Features.Authentication.Command.Models;
-using Core.Features.Subjects.Commands.Models;
+﻿using Application.Features.Authentication.Command.Models;
+using Application.Features.Subjects.Commands.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Subjects.Commands.Validations
+namespace Application.Features.Subjects.Commands.Validations
 {
     public class AddSubjectValidator : AbstractValidator<AddSubjectCommand>
 

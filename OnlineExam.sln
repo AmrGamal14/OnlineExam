@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{3A9EB904-6C72-4544-8F20-9A2BA3D26BD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{3A9EB904-6C72-4544-8F20-9A2BA3D26BD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{8EA4DE51-E115-4ACD-82FB-ADA94226D6B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{8EA4DE51-E115-4ACD-82FB-ADA94226D6B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{758029D0-2A27-4AA7-B830-3908A67688A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{758029D0-2A27-4AA7-B830-3908A67688A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{390EFBDC-997A-4C32-9C2B-BE60532ACCA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Core\Application.csproj", "{390EFBDC-997A-4C32-9C2B-BE60532ACCA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F9D7BFF4-C6A4-4F81-9C4A-54A55FD2B278}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F9D7BFF4-C6A4-4F81-9C4A-54A55FD2B278}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

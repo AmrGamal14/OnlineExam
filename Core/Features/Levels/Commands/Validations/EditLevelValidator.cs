@@ -1,4 +1,4 @@
-﻿using Core.Features.Levels.Commands.Models;
+﻿using Application.Features.Levels.Commands.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Levels.Commands.Validations
+namespace Application.Features.Levels.Commands.Validations
 {
     public class EditLevelValidator : AbstractValidator<EditLevelCommand>
 

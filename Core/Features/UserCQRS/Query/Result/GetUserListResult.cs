@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.UserCQRS.Query.Result
+namespace Application.Features.UserCQRS.Query.Result
 {
     public class GetUserListResult
     {

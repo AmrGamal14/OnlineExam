@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Wrappers
+namespace Application.Wrappers
 {
     public  static class QueryableExtensions
     {

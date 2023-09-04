@@ -1,4 +1,4 @@
-﻿using Core.Features.Exams.Commands.Models;
+﻿using Application.Features.Exams.Commands.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Exams.Commands.Validations
+namespace Application.Features.Exams.Commands.Validations
 {
     public class DeleteExamValidator : AbstractValidator<DeleteExamCommand>
 

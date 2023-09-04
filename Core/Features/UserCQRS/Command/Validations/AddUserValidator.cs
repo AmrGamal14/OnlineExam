@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Features.UserCQRS.Command.Models;
-using Core.Resources;
+using Application.Features.UserCQRS.Command.Models;
+using Application.Resources;
 using Microsoft.Extensions.Localization;
 
-namespace Core.Features.UserCQRS.Command.Validations
+namespace Application.Features.UserCQRS.Command.Validations
 {
     public class AddUserValidator : AbstractValidator<AddUserCommand>
     {

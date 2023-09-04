@@ -1,5 +1,4 @@
-﻿using Core.Features.Questions.Commands.Models;
-using Core.Features.Subjects.Commands.Models;
+﻿using Application.Features.Questions.Commands.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Questions.Commands.Validations
+namespace Application.Features.Questions.Commands.Validations
 {
     public class AddQuestionValidator : AbstractValidator<AddQuestionAndAnswerCommand>
 

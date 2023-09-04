@@ -1,13 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Application.SharedHandlers;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Bases
+namespace Application.Bases
 {
-    public class ResponseHandler
+    public abstract class ResponseHandler
     {
         public ResponseHandler()
         {
@@ -47,6 +48,7 @@ namespace Core.Bases
         {
             return new Response<T>()
             {
+               
                 StatusCode = System.Net.HttpStatusCode.BadRequest,
                 Succeeded = false,
                 Message= Message ==null?"Bad Request" : Message

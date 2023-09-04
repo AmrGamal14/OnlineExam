@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Answer.Queries.Result
+namespace Application.Features.Answer.Queries.Result
 {
     public class GetAnswerListResponse
     {
