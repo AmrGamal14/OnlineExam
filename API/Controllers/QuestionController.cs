@@ -41,8 +41,14 @@ namespace API.Controllers
             var response = await _mediator.Send(command);
             return NewResult(response);
         }
+        [HttpPut("/EditQuestionAndAnswer")]
+        public async Task<IActionResult> Edit([FromBody] EditQuestionAndAnswerCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return NewResult(response);
+        }
         [HttpPut("/EditQuestion")]
-        public async Task<IActionResult> Edit([FromBody] EditQuestionCommand command)
+        public async Task<IActionResult> Update([FromBody] EditQuestionCommand command)
         {
             var response = await _mediator.Send(command);
             return NewResult(response);

@@ -22,6 +22,12 @@ namespace API.Controllers
             var response = await _mediator.Send(request);
             return NewResult(response);
         }
+        [HttpGet("/GetAnswerById")]
+        public async Task<IActionResult> GetAnswerById([FromQuery] GetAnswerById request)
+        {
+            var response = await _mediator.Send(request);
+            return NewResult(response);
+        }
         [HttpPost("/AddAnswer")]
         public async Task<IActionResult> Create([FromBody] AddAnswerCommand command)
         {

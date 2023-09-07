@@ -47,6 +47,7 @@ namespace Application.Mapping
 
             //QuestionMapper
             CreateMap<QuestionList, Question>();
+            CreateMap<EditQuestionAndAnswerCommand, Question>();
             CreateMap<EditQuestionCommand, Question>();
             CreateMap<Answers, AnswersList>();
             CreateMap<Question, GetQuestionListResponse>()
@@ -59,10 +60,10 @@ namespace Application.Mapping
                 .ForPath(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
                 .ForPath(dest => dest.answerlist, opt => opt.MapFrom(src => src.Answers));
             CreateMap<Exam, GetQuestionRandomResponse>();
-            CreateMap<Answers, answerslist>();
+            //CreateMap<Answers, answerslist>();
             CreateMap<Skill, GetByIdResponse>();
             CreateMap<Question, GetByIdResponse>()
-                .ForMember(dest=>dest.Answer, opt=>opt.MapFrom(src=>src.Answers))
+                //.ForMember(dest=>dest.Answer, opt=>opt.MapFrom(src=>src.Answers))
                 .ForMember(dest=>dest.SkillLevel, opt=>opt.MapFrom(src=>src.Skill.Name));
 
 
@@ -73,6 +74,7 @@ namespace Application.Mapping
             //AnswerMapper
             CreateMap<AnswersLists, Answers>().ReverseMap();
             CreateMap<answer, Answers>().ReverseMap();
+            CreateMap<Answers, GetAnswerByIdResponse>().ReverseMap();
             CreateMap<AddAnswerCommand, Answers>().ReverseMap();
             CreateMap<EditAnswerCommand, Answers>().ReverseMap();
             CreateMap<Answers, GetAnswerListResponse>().ReverseMap();

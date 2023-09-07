@@ -30,9 +30,14 @@ namespace Infrastructure.Repositories
             return StudentExam; 
         }
 
-        public async Task<List<StudentExam>> GetStudentExambyUserId(Guid userId)
+        //public async Task<List<StudentExam>> GetStudentExambyUserId(Guid userId)
+        //{
+        //    var StudentExam =  _studentExams.Where(cb => cb.UserId == userId).Include(e=>e.Exam)./*Include(s=>s.StudentExamResults).ThenInclude(e=>e.Answer).ThenInclude(q=>q.Question)*/AsQueryable();
+        //    return StudentExam;
+        //}
+        public IQueryable<StudentExam> GetStudentExambyUserId(Guid userId)
         {
-            var StudentExam = await _studentExams.Where(cb => cb.UserId == userId).Include(e=>e.Exam)./*Include(s=>s.StudentExamResults).ThenInclude(e=>e.Answer).ThenInclude(q=>q.Question)*/ToListAsync();
+            var StudentExam = _studentExams.Where(cb => cb.UserId == userId).Include(e => e.Exam).AsQueryable();
             return StudentExam;
         }
 

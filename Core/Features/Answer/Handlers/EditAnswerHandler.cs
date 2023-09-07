@@ -28,8 +28,7 @@ namespace Application.Features.Answer.Handlers
             var Answermapper = _mapper.Map<Answers>(request);
             await   _unitOfWork.answer.UpdateAsync(Answermapper);
             return success("Edit Successfully");
-            //if (result=="Success")
-            //else return BadRequest<string>("Edit Not Successfully");
+          
         }
     }
 }

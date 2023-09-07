@@ -15,15 +15,21 @@ namespace API.Controllers
 
     public class HistoryController : AppControllerBase
     {
-       
-        [HttpGet("/StudentHistory")]
-        public async Task<IActionResult> GetExamList()
-        {
-            var response = await _mediator.Send(new GetStudentHistory());
-            return NewResult(response);
-        }
-      
-        [HttpGet("/ExamHistory")]
+
+        //[HttpGet("/StudentHistory")]
+        //public async Task<IActionResult> GetExamList()
+        //{
+        //    var response = await _mediator.Send(new GetStudentHistory());
+        //    return Ok(response);
+         
+    [HttpGet("/StudentHistory")]
+    public async Task<IActionResult> GetExamList([FromQuery] GetStudentHistory command )
+    {
+        var response = await _mediator.Send(command);
+        return Ok(response);
+    }
+
+    [HttpGet("/ExamHistory")]
         public async Task<IActionResult> GetExamHistory([FromQuery] GetExamHistory command)
         {
             var response = await _mediator.Send(command);
